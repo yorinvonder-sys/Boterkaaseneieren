@@ -32,17 +32,94 @@
             overflow: hidden;
         }
 
-        .game-container {
+        /* --- Setup Screen --- */
+        #setup-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: clamp(1rem, 4vh, 2rem); /* Responsive spacing */
+            gap: 1.5rem; /* Adjusted gap */
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        #setup-container h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2rem, 8vmin, 3.5rem);
+            color: var(--text-color);
+            margin-bottom: 0;
+        }
+
+        .instructions {
+            font-size: clamp(0.9rem, 2.5vmin, 1rem);
+            color: var(--border-color);
+            max-width: 400px;
+            margin: 0;
+        }
+
+        .player-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .player-setup {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .player-setup label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        .player-setup .symbol {
+            font-weight: 900;
+        }
+        #label-playerX { color: var(--primary-color-x); }
+        #label-playerO { color: var(--primary-color-o); }
+
+        .player-setup input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 2px solid var(--border-color);
+            background-color: var(--cell-color);
+            color: var(--text-color);
+            font-size: 1.1rem;
+            text-align: center;
+        }
+        
+        #start-btn {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            padding: 15px 40px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            background-color: var(--correct-color);
+            color: var(--background-color);
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            margin-top: 1rem;
+        }
+
+
+        /* --- Game Screen --- */
+        .game-container {
+            display: none; /* Hidden by default */
+            flex-direction: column;
+            align-items: center;
+            gap: clamp(1rem, 4vh, 2rem);
             padding: 1rem;
         }
 
         .status-display {
             font-family: 'Montserrat', sans-serif;
-            font-size: clamp(1.2rem, 5vmin, 2rem); /* Responsive font size */
+            font-size: clamp(1.2rem, 5vmin, 2rem);
             font-weight: 700;
             padding: 10px 30px;
             border-radius: 20px;
@@ -63,23 +140,15 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             grid-template-rows: repeat(3, 1fr);
-            /* --- KEY CHANGE FOR RESPONSIVENESS --- */
-            /* Uses the smaller of viewport width/height */
             width: clamp(280px, 70vmin, 450px);
             height: clamp(280px, 70vmin, 450px);
-            /* --- END KEY CHANGE --- */
             gap: 10px;
             transition: box-shadow 0.5s ease-in-out;
             border-radius: 15px;
         }
         
-        .board.turnX {
-            box-shadow: 0 0 25px 5px rgba(0, 168, 232, 0.5);
-        }
-
-        .board.turnO {
-            box-shadow: 0 0 25px 5px rgba(255, 94, 91, 0.5);
-        }
+        .board.turnX { box-shadow: 0 0 25px 5px rgba(0, 168, 232, 0.5); }
+        .board.turnO { box-shadow: 0 0 25px 5px rgba(255, 94, 91, 0.5); }
 
         .cell {
             background-color: var(--cell-color);
@@ -88,26 +157,20 @@
             justify-content: center;
             align-items: center;
             font-family: 'Montserrat', sans-serif;
-            font-size: clamp(2.5rem, 15vmin, 5rem); /* Responsive X and O */
+            font-size: clamp(2.5rem, 15vmin, 5rem);
             font-weight: 900;
             cursor: pointer;
             transition: background-color 0.2s ease;
         }
 
-        .cell:not(.X):not(.O):hover {
-            background-color: #2D3748;
-        }
-        
+        .cell:not(.X):not(.O):hover { background-color: #2D3748; }
         .cell.X { color: var(--primary-color-x); cursor: not-allowed; }
         .cell.O { color: var(--primary-color-o); cursor: not-allowed; }
 
-        /* Modals */
         .modal-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background-color: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(5px);
             display: none;
@@ -125,17 +188,8 @@
             width: 500px;
         }
 
-        #question-text {
-            font-size: clamp(1.1rem, 4vmin, 1.5rem);
-            margin-bottom: 20px;
-        }
-
-        .answer-options {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
+        #question-text { font-size: clamp(1.1rem, 4vmin, 1.5rem); margin-bottom: 20px; }
+        .answer-options { display: flex; flex-direction: column; gap: 10px; }
         .answer-btn {
             padding: 15px;
             border: 2px solid var(--border-color);
@@ -146,11 +200,7 @@
             cursor: pointer;
             transition: all 0.2s ease;
         }
-
-        .answer-btn:hover {
-            border-color: var(--primary-color-x);
-            background-color: rgba(0, 168, 232, 0.1);
-        }
+        .answer-btn:hover { border-color: var(--primary-color-x); background-color: rgba(0, 168, 232, 0.1); }
         
         #reset-btn {
             font-family: 'Montserrat', sans-serif;
@@ -165,48 +215,41 @@
             text-transform: uppercase;
         }
         
-        /* Feedback Modal Styling */
-        .feedback-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: var(--incorrect-color);
-        }
-        .feedback-icon {
-            font-size: clamp(6rem, 20vmin, 8rem);
-            line-height: 1;
-            font-weight: 200;
-        }
-        .feedback-text {
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(2rem, 6vmin, 2.5rem);
-            font-weight: 700;
-            margin-top: 10px;
-        }
-
+        .feedback-content { display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--incorrect-color); }
+        .feedback-icon { font-size: clamp(6rem, 20vmin, 8rem); line-height: 1; font-weight: 200; }
+        .feedback-text { font-family: 'Montserrat', sans-serif; font-size: clamp(2rem, 6vmin, 2.5rem); font-weight: 700; margin-top: 10px; }
     </style>
 </head>
 <body>
-
-    <div class="game-container">
-        <div id="turn-display" class="status-display">Team X is aan de beurt</div>
-        <div class="board" id="board">
-            <!-- Cellen worden via JS toegevoegd -->
+    <div id="setup-container">
+        <h1>Kennis & Kruisjes</h1>
+        <p class="instructions">Klik op een vakje om een vraag te krijgen. Let op: eenmaal geklikt, is er geen weg terug!</p>
+        <div class="player-inputs">
+            <div class="player-setup">
+                <label id="label-playerX" for="playerX">Team Blauw <span class="symbol">(X)</span></label>
+                <input type="text" id="playerX" placeholder="Naam speler 1">
+            </div>
+            <div class="player-setup">
+                <label id="label-playerO" for="playerO">Team Rood <span class="symbol">(O)</span></label>
+                <input type="text" id="playerO" placeholder="Naam speler 2">
+            </div>
         </div>
+        <button id="start-btn">Start Spel</button>
+    </div>
+
+    <div class="game-container" id="game-container">
+        <div id="turn-display" class="status-display"></div>
+        <div class="board" id="board"></div>
         <button id="reset-btn">Speel opnieuw</button>
     </div>
 
     <div class="modal-overlay" id="question-modal">
         <div class="modal-content">
             <h2 id="question-text"></h2>
-            <div class="answer-options" id="answer-options">
-                <!-- Antwoordknoppen worden via JS toegevoegd -->
-            </div>
+            <div class="answer-options" id="answer-options"></div>
         </div>
     </div>
     
-    <!-- Feedback Modal voor foute antwoorden -->
     <div class="modal-overlay" id="feedback-modal">
         <div class="feedback-content">
             <span class="feedback-icon">&times;</span>
@@ -216,7 +259,6 @@
 
     <script>
         const questions = [
-            // Oude vragen
             { question: "Wie schreef een wereldberoemd dagboek in het Achterhuis in Amsterdam?", answers: ["Anne Frank", "Pippi Langkous", "Koningin Máxima"], correct: 0 },
             { question: "Wie wordt de 'Vader des Vaderlands' genoemd?", answers: ["André Hazes", "Willem van Oranje", "Mark Rutte"], correct: 1 },
             { question: "Wie schilderde het beroemde schilderij 'De Nachtwacht'?", answers: ["Vincent van Gogh", "Herman Brood", "Rembrandt van Rijn"], correct: 2 },
@@ -226,8 +268,6 @@
             { question: "Welke voetballer was wereldberoemd met rugnummer 14?", answers: ["Johan Cruijff", "Frenkie de Jong", "Wesley Sneijder"], correct: 0 },
             { question: "Welke Nederlandse schilder sneed een stuk van zijn eigen oor af?", answers: ["Picasso", "Vincent van Gogh", "Karel Appel"], correct: 1 },
             { question: "Wie was de beroemdste Nederlandse zeeheld uit de Gouden Eeuw?", answers: ["Kapitein Iglo", "Jack Sparrow", "Michiel de Ruyter"], correct: 2 },
-            
-            // Nieuwe vragen
             { question: "Wie was de eerste mens die op de maan liep?", answers: ["Buzz Aldrin", "Lance Armstrong", "Neil Armstrong"], correct: 2 },
             { question: "Wie is de bedenker van de Harry Potter boeken?", answers: ["J.K. Rowling", "Roald Dahl", "Annie M.G. Schmidt"], correct: 0 },
             { question: "Welk land is beroemd om de piramides en de sfinx?", answers: ["Marokko", "Egypte", "Turkije"], correct: 1 },
@@ -237,6 +277,12 @@
             { question: "Wie is de groene, sterke superheld uit 'The Avengers'?", answers: ["The Hulk", "Shrek", "Yoda"], correct: 0 }
         ];
 
+        const setupContainer = document.getElementById('setup-container');
+        const gameContainer = document.getElementById('game-container');
+        const startBtn = document.getElementById('start-btn');
+        const playerXInput = document.getElementById('playerX');
+        const playerOInput = document.getElementById('playerO');
+
         const board = document.getElementById('board');
         const turnDisplay = document.getElementById('turn-display');
         const questionModal = document.getElementById('question-modal');
@@ -245,18 +291,28 @@
         const answerOptionsContainer = document.getElementById('answer-options');
         const resetBtn = document.getElementById('reset-btn');
 
+        let playerXName, playerOName;
         let currentPlayer = 'X';
         let boardState = Array(9).fill(null);
         let activeCellIndex = null;
         let availableQuestions = [...questions];
         let gameActive = true;
 
+        startBtn.addEventListener('click', () => {
+            playerXName = playerXInput.value.trim() || 'Team Blauw';
+            playerOName = playerOInput.value.trim() || 'Team Rood';
+
+            setupContainer.style.display = 'none';
+            gameContainer.style.display = 'flex';
+            initializeBoard();
+        });
+
         function initializeBoard() {
             board.innerHTML = '';
             boardState = Array(9).fill(null);
             gameActive = true;
             currentPlayer = 'X';
-            availableQuestions = [...questions]; // Vragenpool opnieuw vullen
+            availableQuestions = [...questions];
             updateTurnDisplay();
             
             for (let i = 0; i < 9; i++) {
@@ -271,19 +327,13 @@
         function handleCellClick(event) {
             const clickedCell = event.target;
             const index = clickedCell.dataset.index;
-
-            if (boardState[index] || !gameActive) {
-                return;
-            }
-
+            if (boardState[index] || !gameActive) return;
             activeCellIndex = index;
             showQuestion();
         }
 
         function showQuestion() {
-            if (availableQuestions.length === 0) {
-                availableQuestions = [...questions]; // Reset vragen als ze op zijn
-            }
+            if (availableQuestions.length === 0) availableQuestions = [...questions];
             const randomIndex = Math.floor(Math.random() * availableQuestions.length);
             const currentQuestion = availableQuestions.splice(randomIndex, 1)[0];
             
@@ -318,73 +368,61 @@
                     switchPlayer();
                 }
             } else {
-                // Fout antwoord: toon feedback en wissel daarna van speler
                 showFeedback();
                 setTimeout(() => {
                     hideFeedback();
                     switchPlayer();
-                }, 1500); // Wacht 1.5 seconden
+                }, 1500);
             }
         }
 
-        function showFeedback() {
-            feedbackModal.style.display = 'flex';
-        }
-        function hideFeedback() {
-            feedbackModal.style.display = 'none';
-        }
-
+        function showFeedback() { feedbackModal.style.display = 'flex'; }
+        function hideFeedback() { feedbackModal.style.display = 'none'; }
         function switchPlayer() {
             currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
             updateTurnDisplay();
         }
 
-
-
         function updateTurnDisplay() {
-            turnDisplay.textContent = `Team ${currentPlayer} is aan de beurt`;
-            turnDisplay.className = 'status-display'; // reset classes
+            const currentName = currentPlayer === 'X' ? playerXName : playerOName;
+            turnDisplay.textContent = `${currentName} is aan de beurt`;
+            turnDisplay.className = 'status-display';
             turnDisplay.classList.add(`player${currentPlayer}`);
             
-            // Update de gloed van het bord
-            if (currentPlayer === 'X') {
-                board.classList.remove('turnO');
-                board.classList.add('turnX');
-            } else {
-                board.classList.remove('turnX');
-                board.classList.add('turnO');
+            board.classList.remove('turnO', 'turnX');
+            if (gameActive) {
+                board.classList.add(currentPlayer === 'X' ? 'turnX' : 'turnO');
             }
         }
         
         function checkWin() {
             const winningCombinations = [
-                [0, 1, 2], [3, 4, 5], [6, 7, 8], // Horizontaal
-                [0, 3, 6], [1, 4, 7], [2, 5, 8], // Verticaal
-                [0, 4, 8], [2, 4, 6]  // Diagonaal
+                [0, 1, 2], [3, 4, 5], [6, 7, 8],
+                [0, 3, 6], [1, 4, 7], [2, 5, 8],
+                [0, 4, 8], [2, 4, 6]
             ];
-
-            return winningCombinations.some(combination => {
-                return combination.every(index => {
-                    return boardState[index] === currentPlayer;
-                });
-            });
+            return winningCombinations.some(c => c.every(i => boardState[i] === currentPlayer));
         }
         
         function endGame(draw) {
             gameActive = false;
-            board.classList.remove('turnX', 'turnO'); // Verwijder gloed aan het einde
+            board.classList.remove('turnX', 'turnO');
             if (draw) {
                 turnDisplay.textContent = 'Gelijkspel!';
             } else {
-                turnDisplay.textContent = `Team ${currentPlayer} heeft gewonnen!`;
+                const winnerName = currentPlayer === 'X' ? playerXName : playerOName;
+                turnDisplay.textContent = `${winnerName} heeft gewonnen!`;
             }
             turnDisplay.className = 'status-display';
         }
 
-        resetBtn.addEventListener('click', initializeBoard);
-
-        // Start het spel
-        initializeBoard();
+        resetBtn.addEventListener('click', () => {
+            // Return to setup screen
+            gameContainer.style.display = 'none';
+            setupContainer.style.display = 'flex';
+            playerXInput.value = '';
+            playerOInput.value = '';
+        });
     </script>
 </body>
 </html>
