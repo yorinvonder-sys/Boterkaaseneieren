@@ -3,19 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kennis & Kruisjes</title>
+    <title>Digibord: Wie is het?</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@400;600&display=swap');
 
         :root {
             --background-color: #12182B;
-            --primary-color-x: #00A8E8; /* Blauw voor X */
-            --primary-color-o: #FF5E5B; /* Rood voor O */
+            --primary-color: #00A8E8;
+            --secondary-color: #FF5E5B;
             --text-color: #FFFFFF;
-            --cell-color: #1E293B;
-            --border-color: #4A5568;
-            --correct-color: #48BB78;
-            --incorrect-color: #F56565;
+            --card-color: #1E293B;
+            --description-color: #A0AEC0;
         }
 
         body, html {
@@ -26,404 +24,261 @@
             font-family: 'Open Sans', sans-serif;
             background-color: var(--background-color);
             color: var(--text-color);
+            overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
         }
 
-        /* --- Setup Screen --- */
-        #setup-container {
+        .screen {
+            width: 100%;
+            height: 100%;
             display: flex;
             flex-direction: column;
+            justify-content: center;
             align-items: center;
-            gap: 1.5rem; /* Adjusted gap */
-            padding: 2rem;
             text-align: center;
-        }
-        
-        #setup-container h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(2rem, 8vmin, 3.5rem);
-            color: var(--text-color);
-            margin-bottom: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            position: absolute;
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
 
-        .instructions {
-            font-size: clamp(0.9rem, 2.5vmin, 1rem);
-            color: var(--border-color);
-            max-width: 400px;
+        .hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.95);
+        }
+
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 900;
+            color: var(--primary-color);
+            text-shadow: 0 0 15px rgba(0, 168, 232, 0.5);
             margin: 0;
         }
 
-        .player-inputs {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            width: 100%;
-            max-width: 400px;
+        #start-screen p {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            max-width: 600px;
+            margin: 20px 0 40px;
+            line-height: 1.6;
         }
 
-        .player-setup {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .player-setup label {
+        .btn {
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-        .player-setup .symbol {
-            font-weight: 900;
-        }
-        #label-playerX { color: var(--primary-color-x); }
-        #label-playerO { color: var(--primary-color-o); }
-
-        .player-setup input {
-            width: 100%;
-            padding: 12px;
-            border-radius: 10px;
-            border: 2px solid var(--border-color);
-            background-color: var(--cell-color);
-            color: var(--text-color);
-            font-size: 1.1rem;
-            text-align: center;
-        }
-        
-        #start-btn {
-            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1rem, 4vw, 1.5rem);
             font-weight: 700;
             padding: 15px 40px;
-            border-radius: 50px;
             border: none;
+            border-radius: 50px;
             cursor: pointer;
-            background-color: var(--correct-color);
-            color: var(--background-color);
-            font-size: 1.2rem;
+            transition: all 0.3s ease;
             text-transform: uppercase;
-            margin-top: 1rem;
         }
 
-
-        /* --- Game Screen --- */
-        .game-container {
-            display: none; /* Hidden by default */
+        #start-btn {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            box-shadow: 0 5px 20px rgba(0, 168, 232, 0.4);
+        }
+        #start-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 168, 232, 0.6);
+        }
+        
+        #game-screen {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+            box-sizing: border-box;
+            padding: 40px 20px;
+        }
+        
+        #game-content {
+            display: flex;
             flex-direction: column;
             align-items: center;
-            gap: clamp(1rem, 4vh, 2rem);
-            padding: 1rem;
+            justify-content: center;
         }
 
-        .status-display {
+        #person-name {
             font-family: 'Montserrat', sans-serif;
-            font-size: clamp(1.2rem, 5vmin, 2rem);
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 900;
+            margin: 0;
+            padding: 10px 20px;
+            border-radius: 10px;
+            color: var(--text-color);
+        }
+        
+        #person-description {
+            font-family: 'Open Sans', sans-serif;
+            font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+            max-width: 800px;
+            margin-top: 20px;
+            line-height: 1.6;
+            color: var(--description-color);
+        }
+
+        #timer {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1.8rem, 5vw, 3rem);
             font-weight: 700;
-            padding: 10px 30px;
-            border-radius: 20px;
-            transition: background-color 0.3s ease;
-            animation: fadeIn 0.5s ease-in-out;
-            text-align: center;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
+            color: var(--primary-color);
+            margin-top: 30px;
         }
 
-        #turn-display.playerX { background-color: var(--primary-color-x); }
-        #turn-display.playerO { background-color: var(--primary-color-o); }
-
-        .board {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(3, 1fr);
-            width: clamp(280px, 70vmin, 450px);
-            height: clamp(280px, 70vmin, 450px);
-            gap: 10px;
-            transition: box-shadow 0.5s ease-in-out;
-            border-radius: 15px;
-        }
-        
-        .board.turnX { box-shadow: 0 0 25px 5px rgba(0, 168, 232, 0.5); }
-        .board.turnO { box-shadow: 0 0 25px 5px rgba(255, 94, 91, 0.5); }
-
-        .cell {
-            background-color: var(--cell-color);
-            border-radius: 15px;
+        .controls {
             display: flex;
             justify-content: center;
-            align-items: center;
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(2.5rem, 15vmin, 5rem);
-            font-weight: 900;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
+            gap: 20px;
+            width: 100%;
         }
-
-        .cell:not(.X):not(.O):hover { background-color: #2D3748; }
-        .cell.X { color: var(--primary-color-x); cursor: not-allowed; }
-        .cell.O { color: var(--primary-color-o); cursor: not-allowed; }
-
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(5px);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .modal-content {
-            background-color: var(--cell-color);
-            padding: 30px;
-            border-radius: 20px;
-            text-align: center;
-            max-width: 90vw;
-            width: 500px;
-        }
-
-        #question-text { font-size: clamp(1.1rem, 4vmin, 1.5rem); margin-bottom: 20px; }
-        .answer-options { display: flex; flex-direction: column; gap: 10px; }
-        .answer-btn {
-            padding: 15px;
-            border: 2px solid var(--border-color);
-            border-radius: 10px;
-            background-color: transparent;
+        
+        .control-btn {
+            background-color: var(--card-color);
             color: var(--text-color);
-            font-size: clamp(1rem, 3vmin, 1.1rem);
-            cursor: pointer;
-            transition: all 0.2s ease;
+            border: 2px solid var(--primary-color);
         }
-        .answer-btn:hover { border-color: var(--primary-color-x); background-color: rgba(0, 168, 232, 0.1); }
-        
-        #reset-btn {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            padding: 10px 30px;
-            border-radius: 50px;
-            border: none;
-            cursor: pointer;
-            background-color: var(--primary-color-o);
-            color: var(--background-color);
-            font-size: clamp(0.9rem, 3vmin, 1rem);
-            text-transform: uppercase;
+        .control-btn:hover {
+            background-color: var(--primary-color);
+            color: var(--card-color);
         }
-        
-        .feedback-content { display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--incorrect-color); }
-        .feedback-icon { font-size: clamp(6rem, 20vmin, 8rem); line-height: 1; font-weight: 200; }
-        .feedback-text { font-family: 'Montserrat', sans-serif; font-size: clamp(2rem, 6vmin, 2.5rem); font-weight: 700; margin-top: 10px; }
+
+        #stop-btn {
+            border-color: var(--secondary-color);
+        }
+        #stop-btn:hover {
+            background-color: var(--secondary-color);
+            color: var(--card-color);
+        }
+
     </style>
 </head>
 <body>
-    <div id="setup-container">
-        <h1>Kennis & Kruisjes</h1>
-        <p class="instructions">Klik op een vakje om een vraag te krijgen. Let op: eenmaal geklikt, is er geen weg terug!</p>
-        <div class="player-inputs">
-            <div class="player-setup">
-                <label id="label-playerX" for="playerX">Team Blauw <span class="symbol">(X)</span></label>
-                <input type="text" id="playerX" placeholder="Naam speler 1">
-            </div>
-            <div class="player-setup">
-                <label id="label-playerO" for="playerO">Team Rood <span class="symbol">(O)</span></label>
-                <input type="text" id="playerO" placeholder="Naam speler 2">
-            </div>
-        </div>
-        <button id="start-btn">Start Spel</button>
+
+    <!-- Startscherm -->
+    <div id="start-screen" class="screen">
+        <h1>Wie is het?</h1>
+        <p>Eén leerling zit met de rug naar het bord. De klas ziet een persoon en een hint. De leerling stelt ja/nee-vragen om te raden wie het is. Druk op START als de leerling er klaar voor zit!</p>
+        <button id="start-btn" class="btn">Start Spel</button>
     </div>
 
-    <div class="game-container" id="game-container">
-        <div id="turn-display" class="status-display"></div>
-        <div class="board" id="board"></div>
-        <button id="reset-btn">Speel opnieuw</button>
-    </div>
-
-    <div class="modal-overlay" id="question-modal">
-        <div class="modal-content">
-            <h2 id="question-text"></h2>
-            <div class="answer-options" id="answer-options"></div>
+    <!-- Spelscherm -->
+    <div id="game-screen" class="screen hidden">
+        <div id="game-content">
+            <h2 id="person-name"></h2>
+            <p id="person-description"></p>
+            <div id="timer">00:45</div>
         </div>
-    </div>
-    
-    <div class="modal-overlay" id="feedback-modal">
-        <div class="feedback-content">
-            <span class="feedback-icon">&times;</span>
-            <p class="feedback-text">Fout!</p>
+
+        <div class="controls">
+            <button id="next-btn" class="btn control-btn">Volgende Persoon</button>
+            <button id="stop-btn" class="btn control-btn">Stop Spel</button>
         </div>
     </div>
 
     <script>
-        const questions = [
-            { question: "Wie schreef een wereldberoemd dagboek in het Achterhuis in Amsterdam?", answers: ["Anne Frank", "Pippi Langkous", "Koningin Máxima"], correct: 0 },
-            { question: "Wie wordt de 'Vader des Vaderlands' genoemd?", answers: ["André Hazes", "Willem van Oranje", "Mark Rutte"], correct: 1 },
-            { question: "Wie schilderde het beroemde schilderij 'De Nachtwacht'?", answers: ["Vincent van Gogh", "Herman Brood", "Rembrandt van Rijn"], correct: 2 },
-            { question: "Welke Nederlandse coureur is wereldkampioen in de Formule 1?", answers: ["Max Verstappen", "Louis van Gaal", "Epke Zonderland"], correct: 0 },
-            { question: "Welke geleerde met het wilde haar bedacht de formule E=mc²?", answers: ["De Baron van Bassie & Adriaan", "Albert Einstein", "Isaac Newton"], correct: 1 },
-            { question: "Wie is de huidige koning van Nederland?", answers: ["Prins Carnaval", "Willem Duys", "Koning Willem-Alexander"], correct: 2 },
-            { question: "Welke voetballer was wereldberoemd met rugnummer 14?", answers: ["Johan Cruijff", "Frenkie de Jong", "Wesley Sneijder"], correct: 0 },
-            { question: "Welke Nederlandse schilder sneed een stuk van zijn eigen oor af?", answers: ["Picasso", "Vincent van Gogh", "Karel Appel"], correct: 1 },
-            { question: "Wie was de beroemdste Nederlandse zeeheld uit de Gouden Eeuw?", answers: ["Kapitein Iglo", "Jack Sparrow", "Michiel de Ruyter"], correct: 2 },
-            { question: "Wie was de eerste mens die op de maan liep?", answers: ["Buzz Aldrin", "Lance Armstrong", "Neil Armstrong"], correct: 2 },
-            { question: "Wie is de bedenker van de Harry Potter boeken?", answers: ["J.K. Rowling", "Roald Dahl", "Annie M.G. Schmidt"], correct: 0 },
-            { question: "Welk land is beroemd om de piramides en de sfinx?", answers: ["Marokko", "Egypte", "Turkije"], correct: 1 },
-            { question: "Welke Italiaanse kunstenaar schilderde de Mona Lisa?", answers: ["Michelangelo", "Leonardo da Vinci", "Donatello"], correct: 1 },
-            { question: "Wie was de 'King of Pop'?", answers: ["Elvis Presley", "Michael Jackson", "Freddie Mercury"], correct: 1 },
-            { question: "Welke ontdekkingsreiziger 'ontdekte' Amerika in 1492?", answers: ["Christoffel Columbus", "Marco Polo", "Vasco da Gama"], correct: 0 },
-            { question: "Wie is de groene, sterke superheld uit 'The Avengers'?", answers: ["The Hulk", "Shrek", "Yoda"], correct: 0 }
+        const people = [
+            { name: "Koning Willem II", description: "Ik was koning van 1840 tot 1849 en gaf in 1848 opdracht voor een nieuwe grondwet." },
+            { name: "Koningin Juliana", description: "Ik was koningin van 1948 tot 1980." },
+            { name: "Johan Rudolf Thorbecke", description: "Als liberaal politicus kreeg ik in 1848 van Koning Willem II de opdracht om de grondwet te herzien." },
+            { name: "Pieter Jelles Troelstra", description: "Ik was een socialistische politicus, een van de oprichters van de SDAP, en riep in 1918 op tot een revolutie." },
+            { name: "Koning Willem III", description: "Ik was koning van 1849 tot 1890 en had een conflict met het parlement over Luxemburg." },
+            { name: "Koningin Beatrix", description: "Ik was koningin van 1980 tot 2013." },
+            { name: "Abraham Kuyper", description: "Ik was een protestantse politicus en de oprichter van de ARP. Mijn aanhangers werden 'kleine luyden' genoemd." },
+            { name: "Wilhelmina Drucker", description: "Als feministe richtte ik de VVV op, samen met Aletta Jacobs." },
+            { name: "Koningin Wilhelmina", description: "Ik was koningin van 1890 tot 1948, ook tijdens de Tweede Wereldoorlog, waarin ik vanuit Londen regeerde." },
+            { name: "Koning Willem-Alexander", description: "Ik ben koning sinds 2013." },
+            { name: "Herman Schaepman", description: "Ik was een katholieke politicus die ervoor zorgde dat de katholieken zich beter gingen organiseren in het parlement." },
+            { name: "Aletta Jacobs", description: "Ik was een feministe en de eerste vrouwelijke arts van Nederland. Samen met Wilhelmina Drucker richtte ik de VVVK op." }
         ];
 
-        const setupContainer = document.getElementById('setup-container');
-        const gameContainer = document.getElementById('game-container');
+        let availablePeople = [...people];
+        let currentPerson = null;
+        let timerInterval;
+        const GAME_DURATION = 45; // 45 seconden
+
+        // Elementen ophalen
+        const startScreen = document.getElementById('start-screen');
+        const gameScreen = document.getElementById('game-screen');
         const startBtn = document.getElementById('start-btn');
-        const playerXInput = document.getElementById('playerX');
-        const playerOInput = document.getElementById('playerO');
+        const nextBtn = document.getElementById('next-btn');
+        const stopBtn = document.getElementById('stop-btn');
+        const personNameEl = document.getElementById('person-name');
+        const personDescriptionEl = document.getElementById('person-description');
+        const timerEl = document.getElementById('timer');
 
-        const board = document.getElementById('board');
-        const turnDisplay = document.getElementById('turn-display');
-        const questionModal = document.getElementById('question-modal');
-        const feedbackModal = document.getElementById('feedback-modal');
-        const questionText = document.getElementById('question-text');
-        const answerOptionsContainer = document.getElementById('answer-options');
-        const resetBtn = document.getElementById('reset-btn');
+        // Functies
+        function switchScreen(hide, show) {
+            hide.classList.add('hidden');
+            show.classList.remove('hidden');
+        }
 
-        let playerXName, playerOName;
-        let currentPlayer = 'X';
-        let boardState = Array(9).fill(null);
-        let activeCellIndex = null;
-        let availableQuestions = [...questions];
-        let gameActive = true;
+        function nextPerson() {
+            clearInterval(timerInterval);
+            
+            if (availablePeople.length === 0) {
+                availablePeople = [...people]; // Reset
+            }
+            
+            const randomIndex = Math.floor(Math.random() * availablePeople.length);
+            currentPerson = availablePeople.splice(randomIndex, 1)[0];
+            
+            personNameEl.textContent = currentPerson.name;
+            personDescriptionEl.textContent = currentPerson.description;
+            
+            startTimer();
+        }
 
+        function startTimer() {
+            clearInterval(timerInterval);
+            let timeLeft = GAME_DURATION;
+
+            timerEl.style.color = 'var(--primary-color)';
+            
+            const updateTimer = () => {
+                const minutes = Math.floor(timeLeft / 60);
+                let seconds = timeLeft % 60;
+                seconds = seconds < 10 ? '0' + seconds : seconds;
+                timerEl.textContent = `${minutes}:${seconds}`;
+
+                if (timeLeft <= 10) {
+                    timerEl.style.color = 'var(--secondary-color)';
+                }
+                
+                if (timeLeft === 0) {
+                    clearInterval(timerInterval);
+                } else {
+                    timeLeft--;
+                }
+            };
+
+            updateTimer();
+            timerInterval = setInterval(updateTimer, 1000);
+        }
+
+        // Event listeners
         startBtn.addEventListener('click', () => {
-            playerXName = playerXInput.value.trim() || 'Team Blauw';
-            playerOName = playerOInput.value.trim() || 'Team Rood';
-
-            setupContainer.style.display = 'none';
-            gameContainer.style.display = 'flex';
-            initializeBoard();
+            switchScreen(startScreen, gameScreen);
+            availablePeople = [...people];
+            nextPerson();
         });
 
-        function initializeBoard() {
-            board.innerHTML = '';
-            boardState = Array(9).fill(null);
-            gameActive = true;
-            currentPlayer = 'X';
-            availableQuestions = [...questions];
-            updateTurnDisplay();
-            
-            for (let i = 0; i < 9; i++) {
-                const cell = document.createElement('div');
-                cell.classList.add('cell');
-                cell.dataset.index = i;
-                cell.addEventListener('click', handleCellClick);
-                board.appendChild(cell);
-            }
-        }
+        nextBtn.addEventListener('click', nextPerson);
 
-        function handleCellClick(event) {
-            const clickedCell = event.target;
-            const index = clickedCell.dataset.index;
-            if (boardState[index] || !gameActive) return;
-            activeCellIndex = index;
-            showQuestion();
-        }
-
-        function showQuestion() {
-            if (availableQuestions.length === 0) availableQuestions = [...questions];
-            const randomIndex = Math.floor(Math.random() * availableQuestions.length);
-            const currentQuestion = availableQuestions.splice(randomIndex, 1)[0];
-            
-            questionText.textContent = currentQuestion.question;
-            answerOptionsContainer.innerHTML = '';
-
-            currentQuestion.answers.forEach((answer, index) => {
-                const button = document.createElement('button');
-                button.textContent = answer;
-                button.classList.add('answer-btn');
-                button.addEventListener('click', () => handleAnswer(index === currentQuestion.correct));
-                answerOptionsContainer.appendChild(button);
-            });
-
-            questionModal.style.display = 'flex';
-        }
-
-        function handleAnswer(isCorrect) {
-            questionModal.style.display = 'none';
-
-            if (isCorrect) {
-                boardState[activeCellIndex] = currentPlayer;
-                const cell = board.children[activeCellIndex];
-                cell.textContent = currentPlayer;
-                cell.classList.add(currentPlayer);
-
-                if (checkWin()) {
-                    endGame(false);
-                } else if (boardState.every(cell => cell)) {
-                    endGame(true);
-                } else {
-                    switchPlayer();
-                }
-            } else {
-                showFeedback();
-                setTimeout(() => {
-                    hideFeedback();
-                    switchPlayer();
-                }, 1500);
-            }
-        }
-
-        function showFeedback() { feedbackModal.style.display = 'flex'; }
-        function hideFeedback() { feedbackModal.style.display = 'none'; }
-        function switchPlayer() {
-            currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-            updateTurnDisplay();
-        }
-
-        function updateTurnDisplay() {
-            const currentName = currentPlayer === 'X' ? playerXName : playerOName;
-            turnDisplay.textContent = `${currentName} is aan de beurt`;
-            turnDisplay.className = 'status-display';
-            turnDisplay.classList.add(`player${currentPlayer}`);
-            
-            board.classList.remove('turnO', 'turnX');
-            if (gameActive) {
-                board.classList.add(currentPlayer === 'X' ? 'turnX' : 'turnO');
-            }
-        }
-        
-        function checkWin() {
-            const winningCombinations = [
-                [0, 1, 2], [3, 4, 5], [6, 7, 8],
-                [0, 3, 6], [1, 4, 7], [2, 5, 8],
-                [0, 4, 8], [2, 4, 6]
-            ];
-            return winningCombinations.some(c => c.every(i => boardState[i] === currentPlayer));
-        }
-        
-        function endGame(draw) {
-            gameActive = false;
-            board.classList.remove('turnX', 'turnO');
-            if (draw) {
-                turnDisplay.textContent = 'Gelijkspel!';
-            } else {
-                const winnerName = currentPlayer === 'X' ? playerXName : playerOName;
-                turnDisplay.textContent = `${winnerName} heeft gewonnen!`;
-            }
-            turnDisplay.className = 'status-display';
-        }
-
-        resetBtn.addEventListener('click', () => {
-            // Return to setup screen
-            gameContainer.style.display = 'none';
-            setupContainer.style.display = 'flex';
-            playerXInput.value = '';
-            playerOInput.value = '';
+        stopBtn.addEventListener('click', () => {
+            clearInterval(timerInterval);
+            switchScreen(gameScreen, startScreen);
         });
     </script>
 </body>
 </html>
+
+
 
