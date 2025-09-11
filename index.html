@@ -29,22 +29,31 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            overflow: hidden;
         }
 
         .game-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 2rem;
+            gap: clamp(1rem, 4vh, 2rem); /* Responsive spacing */
+            padding: 1rem;
         }
 
         .status-display {
             font-family: 'Montserrat', sans-serif;
-            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            font-size: clamp(1.2rem, 5vmin, 2rem); /* Responsive font size */
             font-weight: 700;
             padding: 10px 30px;
             border-radius: 20px;
             transition: background-color 0.3s ease;
+            animation: fadeIn 0.5s ease-in-out;
+            text-align: center;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         #turn-display.playerX { background-color: var(--primary-color-x); }
@@ -54,9 +63,22 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             grid-template-rows: repeat(3, 1fr);
-            width: clamp(300px, 80vw, 500px);
-            height: clamp(300px, 80vw, 500px);
+            /* --- KEY CHANGE FOR RESPONSIVENESS --- */
+            /* Uses the smaller of viewport width/height */
+            width: clamp(280px, 70vmin, 450px);
+            height: clamp(280px, 70vmin, 450px);
+            /* --- END KEY CHANGE --- */
             gap: 10px;
+            transition: box-shadow 0.5s ease-in-out;
+            border-radius: 15px;
+        }
+        
+        .board.turnX {
+            box-shadow: 0 0 25px 5px rgba(0, 168, 232, 0.5);
+        }
+
+        .board.turnO {
+            box-shadow: 0 0 25px 5px rgba(255, 94, 91, 0.5);
         }
 
         .cell {
@@ -66,7 +88,7 @@
             justify-content: center;
             align-items: center;
             font-family: 'Montserrat', sans-serif;
-            font-size: clamp(3rem, 15vw, 6rem);
+            font-size: clamp(2.5rem, 15vmin, 5rem); /* Responsive X and O */
             font-weight: 900;
             cursor: pointer;
             transition: background-color 0.2s ease;
@@ -88,7 +110,7 @@
             height: 100%;
             background-color: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(5px);
-            display: none; /* Standaard verborgen */
+            display: none;
             justify-content: center;
             align-items: center;
             z-index: 1000;
@@ -99,12 +121,12 @@
             padding: 30px;
             border-radius: 20px;
             text-align: center;
-            max-width: 600px;
-            width: 90%;
+            max-width: 90vw;
+            width: 500px;
         }
 
         #question-text {
-            font-size: 1.5rem;
+            font-size: clamp(1.1rem, 4vmin, 1.5rem);
             margin-bottom: 20px;
         }
 
@@ -120,7 +142,7 @@
             border-radius: 10px;
             background-color: transparent;
             color: var(--text-color);
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 3vmin, 1.1rem);
             cursor: pointer;
             transition: all 0.2s ease;
         }
@@ -139,7 +161,7 @@
             cursor: pointer;
             background-color: var(--primary-color-o);
             color: var(--background-color);
-            font-size: 1rem;
+            font-size: clamp(0.9rem, 3vmin, 1rem);
             text-transform: uppercase;
         }
         
@@ -152,13 +174,13 @@
             color: var(--incorrect-color);
         }
         .feedback-icon {
-            font-size: 8rem;
+            font-size: clamp(6rem, 20vmin, 8rem);
             line-height: 1;
             font-weight: 200;
         }
         .feedback-text {
             font-family: 'Montserrat', sans-serif;
-            font-size: 2.5rem;
+            font-size: clamp(2rem, 6vmin, 2.5rem);
             font-weight: 700;
             margin-top: 10px;
         }
@@ -172,7 +194,7 @@
         <div class="board" id="board">
             <!-- Cellen worden via JS toegevoegd -->
         </div>
-        <button id="reset-btn">Reset Spel</button>
+        <button id="reset-btn">Speel opnieuw</button>
     </div>
 
     <div class="modal-overlay" id="question-modal">
@@ -194,6 +216,7 @@
 
     <script>
         const questions = [
+            // Oude vragen
             { question: "Wie schreef een wereldberoemd dagboek in het Achterhuis in Amsterdam?", answers: ["Anne Frank", "Pippi Langkous", "Koningin Máxima"], correct: 0 },
             { question: "Wie wordt de 'Vader des Vaderlands' genoemd?", answers: ["André Hazes", "Willem van Oranje", "Mark Rutte"], correct: 1 },
             { question: "Wie schilderde het beroemde schilderij 'De Nachtwacht'?", answers: ["Vincent van Gogh", "Herman Brood", "Rembrandt van Rijn"], correct: 2 },
@@ -202,7 +225,16 @@
             { question: "Wie is de huidige koning van Nederland?", answers: ["Prins Carnaval", "Willem Duys", "Koning Willem-Alexander"], correct: 2 },
             { question: "Welke voetballer was wereldberoemd met rugnummer 14?", answers: ["Johan Cruijff", "Frenkie de Jong", "Wesley Sneijder"], correct: 0 },
             { question: "Welke Nederlandse schilder sneed een stuk van zijn eigen oor af?", answers: ["Picasso", "Vincent van Gogh", "Karel Appel"], correct: 1 },
-            { question: "Wie was de beroemdste Nederlandse zeeheld uit de Gouden Eeuw?", answers: ["Kapitein Iglo", "Jack Sparrow", "Michiel de Ruyter"], correct: 2 }
+            { question: "Wie was de beroemdste Nederlandse zeeheld uit de Gouden Eeuw?", answers: ["Kapitein Iglo", "Jack Sparrow", "Michiel de Ruyter"], correct: 2 },
+            
+            // Nieuwe vragen
+            { question: "Wie was de eerste mens die op de maan liep?", answers: ["Buzz Aldrin", "Lance Armstrong", "Neil Armstrong"], correct: 2 },
+            { question: "Wie is de bedenker van de Harry Potter boeken?", answers: ["J.K. Rowling", "Roald Dahl", "Annie M.G. Schmidt"], correct: 0 },
+            { question: "Welk land is beroemd om de piramides en de sfinx?", answers: ["Marokko", "Egypte", "Turkije"], correct: 1 },
+            { question: "Welke Italiaanse kunstenaar schilderde de Mona Lisa?", answers: ["Michelangelo", "Leonardo da Vinci", "Donatello"], correct: 1 },
+            { question: "Wie was de 'King of Pop'?", answers: ["Elvis Presley", "Michael Jackson", "Freddie Mercury"], correct: 1 },
+            { question: "Welke ontdekkingsreiziger 'ontdekte' Amerika in 1492?", answers: ["Christoffel Columbus", "Marco Polo", "Vasco da Gama"], correct: 0 },
+            { question: "Wie is de groene, sterke superheld uit 'The Avengers'?", answers: ["The Hulk", "Shrek", "Yoda"], correct: 0 }
         ];
 
         const board = document.getElementById('board');
@@ -224,6 +256,7 @@
             boardState = Array(9).fill(null);
             gameActive = true;
             currentPlayer = 'X';
+            availableQuestions = [...questions]; // Vragenpool opnieuw vullen
             updateTurnDisplay();
             
             for (let i = 0; i < 9; i++) {
@@ -306,10 +339,21 @@
             updateTurnDisplay();
         }
 
+
+
         function updateTurnDisplay() {
             turnDisplay.textContent = `Team ${currentPlayer} is aan de beurt`;
             turnDisplay.className = 'status-display'; // reset classes
             turnDisplay.classList.add(`player${currentPlayer}`);
+            
+            // Update de gloed van het bord
+            if (currentPlayer === 'X') {
+                board.classList.remove('turnO');
+                board.classList.add('turnX');
+            } else {
+                board.classList.remove('turnX');
+                board.classList.add('turnO');
+            }
         }
         
         function checkWin() {
@@ -328,6 +372,7 @@
         
         function endGame(draw) {
             gameActive = false;
+            board.classList.remove('turnX', 'turnO'); // Verwijder gloed aan het einde
             if (draw) {
                 turnDisplay.textContent = 'Gelijkspel!';
             } else {
