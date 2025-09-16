@@ -85,22 +85,32 @@
 </head>
 <body class="flex items-center justify-center min-h-screen">
 
-    <div id="game-container" class="w-full max-w-4xl mx-auto p-4 md:p-6">
+    <!-- Video Intro Screen -->
+    <div id="video-intro-screen" class="fixed inset-0 bg-black flex flex-col items-center justify-center z-50">
+        <video id="intro-video" class="w-full h-full object-cover" autoplay muted playsinline>
+            <source src="Video_Intro_Boter_Kaas_en_Eieren.mp4" type="video/mp4">
+            Je browser ondersteunt de video tag niet.
+        </video>
+        <button id="skip-intro-btn" class="absolute bottom-10 main-btn bg-gray-800 bg-opacity-70 text-white shadow-none hover:bg-gray-700">Intro overslaan</button>
+    </div>
+
+    <div id="game-container" class="hidden w-full max-w-4xl mx-auto p-4 md:p-6">
         
         <!-- Setup Screen -->
         <div id="setup-screen" class="bg-[#1f2937] p-8 rounded-lg shadow-2xl text-center">
             <h1 class="text-5xl md:text-6xl font-black mb-2 title-glow">Boter, Kaas en Eieren</h1>
-            <h2 class="text-xl md:text-2xl font-bold text-cyan-500 mb-6">Geschiedenis Editie</h2>
+            <h2 class="text-xl md:text-2xl font-bold text-cyan-500 mb-2">Geschiedenis Editie</h2>
+            <p class="text-gray-500 text-sm mb-6">(Gebaseerd op MEMO Max)</p>
             <p class="text-gray-400 mb-8">Voer de teamnamen in en kies de onderwerpen om het spel te starten.</p>
             <div class="space-y-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <label for="team-blue-name" class="block text-left font-semibold text-cyan-400 mb-2">Team Blauw (X)</label>
-                        <input type="text" id="team-blue-name" class="w-full p-3 bg-gray-700 border-2 border-gray-600 rounded-md text-white focus:border-cyan-400 focus:ring-0" value="Blauw">
+                        <input type="text" id="team-blue-name" class="w-full p-3 bg-gray-700 border-2 border-gray-600 rounded-md text-white focus:border-cyan-400 focus:ring-0" placeholder="Vul hier je teamnaam in">
                     </div>
                     <div>
                         <label for="team-red-name" class="block text-left font-semibold text-red-400 mb-2">Team Rood (O)</label>
-                        <input type="text" id="team-red-name" class="w-full p-3 bg-gray-700 border-2 border-gray-600 rounded-md text-white focus:border-red-400 focus:ring-0" value="Rood">
+                        <input type="text" id="team-red-name" class="w-full p-3 bg-gray-700 border-2 border-gray-600 rounded-md text-white focus:border-red-400 focus:ring-0" placeholder="Vul hier je teamnaam in">
                     </div>
                 </div>
                 
@@ -205,6 +215,11 @@
 
     <script>
         // --- DOM Elements ---
+        const videoIntroScreen = document.getElementById('video-intro-screen');
+        const introVideo = document.getElementById('intro-video');
+        const skipIntroBtn = document.getElementById('skip-intro-btn');
+        const gameContainer = document.getElementById('game-container');
+
         const setupScreen = document.getElementById('setup-screen');
         const gameScreen = document.getElementById('game-screen');
         const startGameBtn = document.getElementById('start-game-btn');
@@ -357,6 +372,11 @@
         
         function shuffleQuestions(questions) {
              availableQuestions = [...questions].sort(() => Math.random() - 0.5);
+        }
+
+        function startGameApplication() {
+            videoIntroScreen.classList.add('hidden');
+            gameContainer.classList.remove('hidden');
         }
 
         function initializeGame() {
@@ -565,6 +585,8 @@
         }
 
         // --- Event Listeners ---
+        introVideo.addEventListener('ended', startGameApplication);
+        skipIntroBtn.addEventListener('click', startGameApplication);
         startGameBtn.addEventListener('click', initializeGame);
         playAgainBtn.addEventListener('click', resetGame);
 
