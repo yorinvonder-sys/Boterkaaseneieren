@@ -85,22 +85,13 @@
 </head>
 <body class="flex items-center justify-center min-h-screen">
 
-    <!-- Video Intro Screen -->
-    <div id="video-intro-screen" class="fixed inset-0 bg-black flex flex-col items-center justify-center z-50">
-        <video id="intro-video" class="w-full h-full object-cover" autoplay muted playsinline>
-            <source src="Video_Intro_Boter_Kaas_en_Eieren.mp4" type="video/mp4">
-            Je browser ondersteunt de video tag niet.
-        </video>
-        <button id="skip-intro-btn" class="absolute bottom-10 main-btn bg-gray-800 bg-opacity-70 text-white shadow-none hover:bg-gray-700">Intro overslaan</button>
-    </div>
-
-    <div id="game-container" class="hidden w-full max-w-4xl mx-auto p-4 md:p-6">
+    <div id="game-container" class="w-full max-w-4xl mx-auto p-4 md:p-6">
         
         <!-- Setup Screen -->
         <div id="setup-screen" class="bg-[#1f2937] p-8 rounded-lg shadow-2xl text-center">
             <h1 class="text-5xl md:text-6xl font-black mb-2 title-glow">Boter, Kaas en Eieren</h1>
             <h2 class="text-xl md:text-2xl font-bold text-cyan-500 mb-2">Geschiedenis Editie</h2>
-            <p class="text-gray-500 text-sm mb-6">(Gebaseerd op MEMO Max)</p>
+            <p class="text-gray-500 text-sm mb-6">(Gebaseerd op MEMO Max voor Mavo 3 & 4 en Feniks voor Havo/Vwo 3)</p>
             <p class="text-gray-400 mb-8">Voer de teamnamen in en kies de onderwerpen om het spel te starten.</p>
             <div class="space-y-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -148,7 +139,7 @@
                     </details>
                     
                     <!-- Mavo 4 Section -->
-                     <details class="bg-gray-800 rounded-lg border-2 border-gray-700">
+                     <details class="bg-gray-800 rounded-lg border-2 border-gray-700 mb-3">
                         <summary class="p-4 font-semibold text-lg cursor-pointer flex justify-between items-center">
                             Mavo 4
                              <svg class="arrow w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
@@ -173,6 +164,74 @@
                              <label class="flex items-center space-x-3 p-3 bg-gray-900 border-2 border-gray-600 rounded-md cursor-pointer hover:bg-gray-700 transition-colors">
                                 <input type="checkbox" name="topic" value="4-personen" class="rounded h-5 w-5 bg-gray-600 border-gray-500 text-cyan-400 focus:ring-cyan-500 focus:ring-offset-gray-800">
                                 <span>Personen</span>
+                            </label>
+                        </div>
+                    </details>
+
+                    <!-- Havo 3 Section -->
+                     <details class="bg-gray-800 rounded-lg border-2 border-gray-700 mb-3">
+                        <summary class="p-4 font-semibold text-lg cursor-pointer flex justify-between items-center">
+                            Havo 3
+                             <svg class="arrow w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </summary>
+                        <div id="topic-selection-havo3" class="grid grid-cols-2 sm:grid-cols-3 gap-3 p-4 border-t border-gray-700">
+                            <label class="flex items-center space-x-3 p-3 bg-gray-900 border-2 border-gray-600 rounded-md cursor-pointer hover:bg-gray-700 transition-colors">
+                                <input type="checkbox" name="topic" value="h3-3.1" class="rounded h-5 w-5 bg-gray-600 border-gray-500 text-cyan-400 focus:ring-cyan-500 focus:ring-offset-gray-800">
+                                <span>§3.1 Oorlogsgruwelen</span>
+                            </label>
+                            <label class="flex items-center space-x-3 p-3 bg-gray-900 border-2 border-gray-600 rounded-md cursor-pointer hover:bg-gray-700 transition-colors">
+                                <input type="checkbox" name="topic" value="h3-3.2" class="rounded h-5 w-5 bg-gray-600 border-gray-500 text-cyan-400 focus:ring-cyan-500 focus:ring-offset-gray-800">
+                                <span>§3.2 Europa onder spanning</span>
+                            </label>
+                            <label class="flex items-center space-x-3 p-3 bg-gray-900 border-2 border-gray-600 rounded-md cursor-pointer hover:bg-gray-700 transition-colors">
+                                <input type="checkbox" name="topic" value="h3-3.3" class="rounded h-5 w-5 bg-gray-600 border-gray-500 text-cyan-400 focus:ring-cyan-500 focus:ring-offset-gray-800">
+                                <span>§3.3 Van moord naar oorlog</span>
+                            </label>
+                            <label class="flex items-center space-x-3 p-3 bg-gray-900 border-2 border-gray-600 rounded-md cursor-pointer hover:bg-gray-700 transition-colors">
+                                <input type="checkbox" name="topic" value="h3-3.4" class="rounded h-5 w-5 bg-gray-600 border-gray-500 text-cyan-400 focus:ring-cyan-500 focus:ring-offset-gray-800">
+                                <span>§3.4 Oorlog op alle fronten</span>
+                            </label>
+                            <label class="flex items-center space-x-3 p-3 bg-gray-900 border-2 border-gray-600 rounded-md cursor-pointer hover:bg-gray-700 transition-colors">
+                                <input type="checkbox" name="topic" value="h3-3.5" class="rounded h-5 w-5 bg-gray-600 border-gray-500 text-cyan-400 focus:ring-cyan-500 focus:ring-offset-gray-800">
+                                <span>§3.5 Vrede, niet voor iedereen</span>
+                            </label>
+                             <label class="flex items-center space-x-3 p-3 bg-gray-900 border-2 border-gray-600 rounded-md cursor-pointer hover:bg-gray-700 transition-colors">
+                                <input type="checkbox" name="topic" value="h3-3.6" class="rounded h-5 w-5 bg-gray-600 border-gray-500 text-cyan-400 focus:ring-cyan-500 focus:ring-offset-gray-800">
+                                <span>§3.6 Armeense volkenmoord</span>
+                            </label>
+                        </div>
+                    </details>
+                    
+                     <!-- Vwo 3 Section -->
+                     <details class="bg-gray-800 rounded-lg border-2 border-gray-700">
+                        <summary class="p-4 font-semibold text-lg cursor-pointer flex justify-between items-center">
+                            Vwo 3
+                             <svg class="arrow w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </summary>
+                        <div id="topic-selection-vwo3" class="grid grid-cols-2 sm:grid-cols-3 gap-3 p-4 border-t border-gray-700">
+                            <label class="flex items-center space-x-3 p-3 bg-gray-900 border-2 border-gray-600 rounded-md cursor-pointer hover:bg-gray-700 transition-colors">
+                                <input type="checkbox" name="topic" value="vwo-3.1" class="rounded h-5 w-5 bg-gray-600 border-gray-500 text-cyan-400 focus:ring-cyan-500 focus:ring-offset-gray-800">
+                                <span>§3.1 Oriëntatie Oorlogsgruwelen</span>
+                            </label>
+                            <label class="flex items-center space-x-3 p-3 bg-gray-900 border-2 border-gray-600 rounded-md cursor-pointer hover:bg-gray-700 transition-colors">
+                                <input type="checkbox" name="topic" value="vwo-3.2" class="rounded h-5 w-5 bg-gray-600 border-gray-500 text-cyan-400 focus:ring-cyan-500 focus:ring-offset-gray-800">
+                                <span>§3.2 Europa onder spanning</span>
+                            </label>
+                            <label class="flex items-center space-x-3 p-3 bg-gray-900 border-2 border-gray-600 rounded-md cursor-pointer hover:bg-gray-700 transition-colors">
+                                <input type="checkbox" name="topic" value="vwo-3.3" class="rounded h-5 w-5 bg-gray-600 border-gray-500 text-cyan-400 focus:ring-cyan-500 focus:ring-offset-gray-800">
+                                <span>§3.3 Van moordaanlag naar wereldoorlog</span>
+                            </label>
+                            <label class="flex items-center space-x-3 p-3 bg-gray-900 border-2 border-gray-600 rounded-md cursor-pointer hover:bg-gray-700 transition-colors">
+                                <input type="checkbox" name="topic" value="vwo-3.4" class="rounded h-5 w-5 bg-gray-600 border-gray-500 text-cyan-400 focus:ring-cyan-500 focus:ring-offset-gray-800">
+                                <span>§3.4 Oorlog op alle fronten</span>
+                            </label>
+                            <label class="flex items-center space-x-3 p-3 bg-gray-900 border-2 border-gray-600 rounded-md cursor-pointer hover:bg-gray-700 transition-colors">
+                                <input type="checkbox" name="topic" value="vwo-3.5" class="rounded h-5 w-5 bg-gray-600 border-gray-500 text-cyan-400 focus:ring-cyan-500 focus:ring-offset-gray-800">
+                                <span>§3.5 Vrede, maar niet voor iedereen</span>
+                            </label>
+                             <label class="flex items-center space-x-3 p-3 bg-gray-900 border-2 border-gray-600 rounded-md cursor-pointer hover:bg-gray-700 transition-colors">
+                                <input type="checkbox" name="topic" value="vwo-3.6" class="rounded h-5 w-5 bg-gray-600 border-gray-500 text-cyan-400 focus:ring-cyan-500 focus:ring-offset-gray-800">
+                                <span>§3.6 Duits Zuidwest-Afrika</span>
                             </label>
                         </div>
                     </details>
@@ -215,11 +274,7 @@
 
     <script>
         // --- DOM Elements ---
-        const videoIntroScreen = document.getElementById('video-intro-screen');
-        const introVideo = document.getElementById('intro-video');
-        const skipIntroBtn = document.getElementById('skip-intro-btn');
         const gameContainer = document.getElementById('game-container');
-
         const setupScreen = document.getElementById('setup-screen');
         const gameScreen = document.getElementById('game-screen');
         const startGameBtn = document.getElementById('start-game-btn');
@@ -242,124 +297,89 @@
 
         // --- Question Bank ---
         const allQuestions = [
-            // Mavo 3 - §1.3
-            {
-                topic: "3-1.3",
-                question: "Wat hield de 'ethische politiek' van Nederland in Nederlands-Indië in?",
-                answers: ["Een plan om de kolonie zo snel mogelijk zelfstandig te maken.", "Het idee dat Nederland moest zorgen voor de mensen in de kolonie, bijvoorbeeld door scholen te bouwen.", "Een plan om zoveel mogelijk winst uit de kolonie te halen.", "Een plan om iedereen te dwingen Nederlands te spreken."],
-                correct: 1
-            },
-            // Mavo 3 - §1.4
-            {
-                topic: "3-1.4",
-                question: "Wat gebeurde er op 17 augustus 1945, kort nadat Japan zich had overgegeven?",
-                answers: [ "Soekarno riep de onafhankelijkheid van Indonesië uit.", "Nederland gaf de kolonie vrijwillig terug.", "De 'politionele acties' begonnen.", "De geallieerden namen het bestuur over." ],
-                correct: 0
-            },
-            // Mavo 3 - §2.1
-            {
-                topic: "3-2.1",
-                question: "Hoe was het leven voor een fabrieksarbeider in de 19e eeuw?",
-                answers: [ "Korte werkdagen en veel vrije tijd.", "Een goed loon en een mooi huis.", "Lange werkdagen, gevaarlijk werk en weinig loon.", "Verplichte scholing voor hun kinderen." ],
-                correct: 2
-            },
-            // Mavo 3 - §2.2
-            {
-                topic: "3-2.2",
-                question: "Hoe heet de eerste wet tegen kinderarbeid uit 1874?",
-                answers: [ "De Arbeidswet", "De Leerplichtwet", "Het Kinderwetje van Van Houten", "De Fabriekswet" ],
-                correct: 2
-            },
-            // Mavo 3 - §2.3
-            {
-                topic: "3-2.3",
-                question: "Waarom kwamen er in de jaren '60 en '70 veel 'gastarbeiders' naar Nederland?",
-                answers: ["Om te helpen op het platteland.", "Voor de gezelligheid.", "Omdat er een groot tekort was aan werknemers in de fabrieken.", "Om de Nederlandse taal te leren."],
-                correct: 2
-            },
-            // Mavo 4 - §1.1
-            {
-                topic: "4-1.1",
-                question: "Wat was de belangrijkste verandering in de grondwet van 1848?",
-                answers: ["De koning kreeg meer macht.", "De ministers werden verantwoordelijk in plaats van de koning.", "Nederland werd een republiek.", "Iedereen kreeg stemrecht."],
-                correct: 1
-            },
-             {
-                topic: "4-1.1",
-                question: "Waarom ging koning Willem II akkoord met de nieuwe grondwet van Thorbecke?",
-                answers: ["Omdat hij zelf minder wilde werken.", "Omdat de bevolking in opstand kwam.", "Omdat hij bang was voor een revolutie, net als in andere Europese landen.", "Omdat hij geld kreeg van het parlement."],
-                correct: 2
-            },
-            // Mavo 4 - §1.2
-            {
-                topic: "4-1.2",
-                question: "Welke drie grote politieke stromingen ontstonden in de 19e eeuw?",
-                answers: ["Liberalisme, socialisme en confessionalisme.", "Democratie, dictatuur en monarchie.", "Kapitalisme, communisme en anarchisme.", "Nationalisme, imperialisme en kolonialisme."],
-                correct: 0
-            },
-            {
-                topic: "4-1.2",
-                question: "Wat was de 'sociale kwestie'?",
-                answers: ["Een discussie over de macht van de koning.", "De slechte woon- en werkomstandigheden van de arbeiders.", "Een ruzie over de koloniën.", "De vraag of vrouwen mochten stemmen."],
-                correct: 1
-            },
-            // Mavo 4 - §1.3
-            {
-                topic: "4-1.3",
-                question: "Wat was het doel van de eerste feministische golf?",
-                answers: ["Gelijke lonen voor mannen en vrouwen.", "Het recht op abortus.", "Het recht om te mogen studeren.", "Kiesrecht voor vrouwen."],
-                correct: 3
-            },
-            {
-                topic: "4-1.3",
-                question: "Wanneer kregen álle mannen in Nederland kiesrecht?",
-                answers: ["In 1848", "In 1887", "In 1917", "In 1919"],
-                correct: 2
-            },
-            // Mavo 4 - §1.4
-            {
-                topic: "4-1.4",
-                question: "Waarom moeten politieke partijen in Nederland vaak een coalitie vormen na de verkiezingen?",
-                answers: ["Omdat de koning dat wil.", "Omdat er te veel partijen zijn.", "Omdat meestal geen enkele partij een meerderheid van de zetels heeft.", "Omdat dit in de grondwet staat."],
-                correct: 2
-            },
-            {
-                topic: "4-1.4",
-                question: "Welk recht heeft alleen de Tweede Kamer, en niet de Eerste Kamer?",
-                answers: ["Het recht van budget (de begroting goedkeuren).", "Het recht van enquête (een onderzoek instellen).", "Het recht van initiatief (zelf een wetsvoorstel indienen).", "Het recht van interpellatie (de minister om informatie vragen)."],
-                correct: 2
-            },
-            {
-                topic: "4-1.4",
-                question: "Wat is een belangrijk kenmerk van een rechtsstaat?",
-                answers: ["Dat de politie altijd gelijk heeft.", "Dat de overheid en burgers zich beiden aan de wet moeten houden.", "Dat er geen rechters nodig zijn.", "Dat de koning de wetten maakt."],
-                correct: 1
-            },
+            // ================== Mavo 3 ==================
+            // §1.3 Nationalisme
+            { topic: "3-1.3", question: "Wat hield de 'ethische politiek' van Nederland in Nederlands-Indië in?", answers: ["Een plan om de kolonie zo snel mogelijk zelfstandig te maken.", "Het idee dat Nederland moest zorgen voor de mensen in de kolonie, bijvoorbeeld door scholen te bouwen.", "Een plan om zoveel mogelijk winst uit de kolonie te halen.", "Een plan om iedereen te dwingen Nederlands te spreken."], correct: 1 },
+            { topic: "3-1.3", question: "Wat is nationalisme?", answers: ["Liefde voor je eigen land, volk en cultuur.", "Het idee dat iedereen gelijk is.", "Het veroveren van zoveel mogelijk koloniën.", "Een politiek systeem met een koning aan het hoofd."], correct: 0 },
+            { topic: "3-1.3", question: "Wat was de 'Volksraad' in Nederlands-Indië?", answers: ["Een raad van Nederlanders die de kolonie bestuurde.", "Een soort parlement waarin ook Indonesiërs mochten meepraten, maar met weinig macht.", "De regering van het onafhankelijke Indonesië.", "Een groep die vocht voor onafhankelijkheid."], correct: 1 },
+            // §1.4 Dekolonisatie
+            { topic: "3-1.4", question: "Wat gebeurde er op 17 augustus 1945, kort nadat Japan zich had overgegeven?", answers: [ "Soekarno riep de onafhankelijkheid van Indonesië uit.", "Nederland gaf de kolonie vrijwillig terug.", "De 'politionele acties' begonnen.", "De geallieerden namen het bestuur over." ], correct: 0 },
+            { topic: "3-1.4", question: "Hoe noemde Nederland de oorlogen die het voerde om Indonesië als kolonie te behouden?", answers: ["De Vrijheidsoorlog", "De Indonesische Revolutie", "De Politionele Acties", "De Dekolonisatieoorlog"], correct: 2 },
+            { topic: "3-1.4", question: "Waarom stopte Nederland uiteindelijk met de oorlog in Indonesië?", answers: ["Omdat Nederland de oorlog had gewonnen.", "Omdat de Indonesische bevolking Nederland steunde.", "Omdat andere landen, zoals de VS, druk uitoefenden op Nederland.", "Omdat de koning het zo besliste."], correct: 2 },
+            // §2.1 Revolutie
+            { topic: "3-2.1", question: "Hoe was het leven voor een fabrieksarbeider in de 19e eeuw?", answers: [ "Korte werkdagen en veel vrije tijd.", "Een goed loon en een mooi huis.", "Lange werkdagen, gevaarlijk werk en weinig loon.", "Verplichte scholing voor hun kinderen." ], correct: 2 },
+            { topic: "3-2.1", question: "Wat was een belangrijke reden voor de late industrialisatie in Nederland?", answers: ["Er waren te veel boeren.", "Nederland had geen koloniën.", "Er was te weinig steenkool beschikbaar in het begin.", "De koning was tegen fabrieken."], correct: 2 },
+            // §2.2 Samenleving
+            { topic: "3-2.2", question: "Hoe heet de eerste wet tegen kinderarbeid uit 1874?", answers: [ "De Arbeidswet", "De Leerplichtwet", "Het Kinderwetje van Van Houten", "De Fabriekswet" ], correct: 2 },
+            { topic: "3-2.2", question: "Wat werd er geregeld in de Leerplichtwet van 1901?", answers: ["Dat alle kinderen van 6 tot 12 jaar naar school moesten.", "Dat kinderen niet meer in fabrieken mochten werken.", "Dat vrouwen mochten stemmen.", "Dat de werkdag maximaal 8 uur mocht duren."], correct: 0 },
+            { topic: "3-2.2", question: "Wat is een vakbond?", answers: ["Een politieke partij voor arbeiders.", "Een club voor fabriekseigenaren.", "Een vereniging van werknemers die opkomt voor betere lonen en werkomstandigheden.", "Een school waar je een vak leert."], correct: 2 },
+            // §2.3 Industrie
+            { topic: "3-2.3", question: "Waarom kwamen er in de jaren '60 en '70 veel 'gastarbeiders' naar Nederland?", answers: ["Om te helpen op het platteland.", "Voor de gezelligheid.", "Omdat er een groot tekort was aan werknemers in de fabrieken.", "Om de Nederlandse taal te leren."], correct: 2 },
+             { topic: "3-2.3", question: "Wat was de 'wederopbouw' na de Tweede Wereldoorlog?", answers: ["Het bouwen van nieuwe fabrieken.", "Het herstellen van de schade die in de oorlog was ontstaan.", "Het uitnodigen van gastarbeiders.", "Het oprichten van de Europese Unie."], correct: 1 },
+
+            // ================== Mavo 4 ==================
+            // §1.1 Koning & Parlement
+            { topic: "4-1.1", question: "Wat was de belangrijkste verandering in de grondwet van 1848?", answers: ["De koning kreeg meer macht.", "De ministers werden verantwoordelijk in plaats van de koning.", "Nederland werd een republiek.", "Iedereen kreeg stemrecht."], correct: 1 },
+            { topic: "4-1.1", question: "Waarom ging koning Willem II akkoord met de nieuwe grondwet van Thorbecke?", answers: ["Omdat hij zelf minder wilde werken.", "Omdat de bevolking in opstand kwam.", "Omdat hij bang was voor een revolutie, net als in andere Europese landen.", "Omdat hij geld kreeg van het parlement."], correct: 2 },
+            { topic: "4-1.1", question: "Wat betekent 'ministeriële verantwoordelijkheid'?", answers: ["Dat de koning verantwoordelijk is voor de ministers.", "Dat de ministers alles zelf mogen beslissen.", "Dat de ministers verantwoordelijk zijn voor hun eigen daden en die van de koning.", "Dat de ministers gekozen worden door het volk."], correct: 2 },
+            // §1.2 Politieke Stromingen
+            { topic: "4-1.2", question: "Welke drie grote politieke stromingen ontstonden in de 19e eeuw?", answers: ["Liberalisme, socialisme en confessionalisme.", "Democratie, dictatuur en monarchie.", "Kapitalisme, communisme en anarchisme.", "Nationalisme, imperialisme en kolonialisme."], correct: 0 },
+            { topic: "4-1.2", question: "Wat was de 'sociale kwestie'?", answers: ["Een discussie over de macht van de koning.", "De slechte woon- en werkomstandigheden van de arbeiders.", "Een ruzie over de koloniën.", "De vraag of vrouwen mochten stemmen."], correct: 1 },
+            { topic: "4-1.2", question: "Wat is 'verzuiling'?", answers: ["De scheiding tussen de Eerste en Tweede Kamer.", "De verdeling van de samenleving in groepen op basis van geloof of politieke overtuiging.", "Het bouwen van dijken om het land te beschermen.", "Het oprichten van politieke partijen."], correct: 1 },
+            // §1.3 Sociale Wetten & Kiesrecht
+            { topic: "4-1.3", question: "Wat was het doel van de eerste feministische golf?", answers: ["Gelijke lonen voor mannen en vrouwen.", "Het recht op abortus.", "Het recht om te mogen studeren.", "Kiesrecht voor vrouwen."], correct: 3 },
+            { topic: "4-1.3", question: "Wanneer kregen álle mannen in Nederland kiesrecht?", answers: ["In 1848", "In 1887", "In 1917", "In 1919"], correct: 2 },
+            { topic: "4-1.3", question: "Wanneer kregen vrouwen in Nederland actief kiesrecht (het recht om te stemmen)?", answers: ["1848", "1917", "1919", "1945"], correct: 2 },
+            // §1.4 Parlement & Democratie
+            { topic: "4-1.4", question: "Waarom moeten politieke partijen in Nederland vaak een coalitie vormen na de verkiezingen?", answers: ["Omdat de koning dat wil.", "Omdat er te veel partijen zijn.", "Omdat meestal geen enkele partij een meerderheid van de zetels heeft.", "Omdat dit in de grondwet staat."], correct: 2 },
+            { topic: "4-1.4", question: "Welk recht heeft alleen de Tweede Kamer, en niet de Eerste Kamer?", answers: ["Het recht van budget (de begroting goedkeuren).", "Het recht van enquête (een onderzoek instellen).", "Het recht van initiatief (zelf een wetsvoorstel indienen).", "Het recht van interpellatie (de minister om informatie vragen)."], correct: 2 },
+            { topic: "4-1.4", question: "Wat is een belangrijk kenmerk van een rechtsstaat?", answers: ["Dat de politie altijd gelijk heeft.", "Dat de overheid en burgers zich beiden aan de wet moeten houden.", "Dat er geen rechters nodig zijn.", "Dat de koning de wetten maakt."], correct: 1 },
             // Mavo 4 - Personen
-            {
-                topic: "4-personen",
-                question: "Welke politicus was de belangrijkste schrijver van de grondwet van 1848?",
-                answers: ["Abraham Kuyper", "Johan Thorbecke", "Pieter Jelles Troelstra", "Herman Schaepman"],
-                correct: 1
-            },
-            {
-                topic: "4-personen",
-                question: "Wie was de eerste vrouw in Nederland die naar de universiteit ging en arts werd?",
-                answers: ["Koningin Wilhelmina", "Wilhelmina Drucker", "Koningin Juliana", "Aletta Jacobs"],
-                correct: 3
-            },
-            {
-                topic: "4-personen",
-                question: "Welke politicus was de leider van de socialisten en richtte de SDAP op?",
-                answers: ["Pieter Jelles Troelstra", "Abraham Kuyper", "Johan Thorbecke", "Koning Willem III"],
-                correct: 0
-            },
-            {
-                topic: "4-personen",
-                question: "Onder welke koning werd de belangrijke grondwet van 1848 ingevoerd?",
-                answers: ["Koning Willem I", "Koning Willem II", "Koning Willem III", "Koning Willem-Alexander"],
-                correct: 1
-            }
+            { topic: "4-personen", question: "Welke politicus was de belangrijkste schrijver van de grondwet van 1848?", answers: ["Abraham Kuyper", "Johan Thorbecke", "Pieter Jelles Troelstra", "Herman Schaepman"], correct: 1 },
+            { topic: "4-personen", question: "Wie was de eerste vrouw in Nederland die naar de universiteit ging en arts werd?", answers: ["Koningin Wilhelmina", "Wilhelmina Drucker", "Koningin Juliana", "Aletta Jacobs"], correct: 3 },
+            { topic: "4-personen", question: "Welke politicus was de leider van de socialisten en richtte de SDAP op?", answers: ["Pieter Jelles Troelstra", "Abraham Kuyper", "Johan Thorbecke", "Koning Willem III"], correct: 0 },
+            { topic: "4-personen", question: "Onder welke koning werd de belangrijke grondwet van 1848 ingevoerd?", answers: ["Koning Willem I", "Koning Willem II", "Koning Willem III", "Koning Willem-Alexander"], correct: 1 },
+            
+            // ================== Havo 3 ==================
+            // §3.1 Oorlogsgruwelen
+            { topic: "h3-3.1", question: "Wat was een belangrijke oorzaak van de Eerste Wereldoorlog?", answers: ["De opkomst van het communisme.", "De groei van nationalisme en onderlinge concurrentie.", "De uitvinding van de stoommachine.", "Een ruzie over koloniën in Afrika."], correct: 1 },
+            { topic: "h3-3.1", question: "Welk land werd gezien als de grootste concurrent van Groot-Brittannië op zee voor de Eerste Wereldoorlog?", answers: ["Frankrijk", "Rusland", "Duitsland", "Verenigde Staten"], correct: 2 },
+            // §3.2 Europa onder spanning
+            { topic: "h3-3.2", question: "Welke landen vormden de Triple Entente (de geallieerden) aan het begin van de oorlog?", answers: ["Duitsland, Oostenrijk-Hongarije en Italië.", "Rusland, Frankrijk en Groot-Brittannië.", "Verenigde Staten, Japan en China.", "Nederland, België en Luxemburg."], correct: 1 },
+            { topic: "h3-3.2", question: "Welke landen stonden bekend als de Centralen aan het begin van de oorlog?", answers: ["Rusland en Frankrijk", "Groot-Brittannië en de VS", "Duitsland en Oostenrijk-Hongarije", "Servië en België"], correct: 2 },
+            // §3.3 Van moord naar oorlog
+            { topic: "h3-3.3", question: "De moord op welke troonopvolger was de directe aanleiding voor de Eerste Wereldoorlog?", answers: ["De Duitse keizer Wilhelm II.", "De Russische tsaar Nicolaas II.", "De Oostenrijk-Hongaarse kroonprins Franz Ferdinand.", "De Britse koning George V."], correct: 2 },
+            { topic: "h3-3.3", question: "Wat was het Schlieffenplan van Duitsland?", answers: ["Een plan om Groot-Brittannië aan te vallen met duikboten.", "Een plan om Rusland snel te verslaan.", "Een plan om via België snel Frankrijk aan te vallen.", "Een plan om een vredesverdrag te sluiten."], correct: 2 },
+            // §3.4 Oorlog op alle fronten
+            { topic: "h3-3.4", question: "Wat was kenmerkend voor de gevechten aan het westfront?", answers: ["Snelle en beweeglijke veldslagen.", "Een loopgravenoorlog met weinig terreinwinst.", "Grote zeeslagen tussen duikboten.", "Luchtaanvallen op steden met bommenwerpers."], correct: 1 },
+            { topic: "h3-3.4", question: "Wat is propaganda in de context van oorlog?", answers: ["Het sturen van geheime boodschappen.", "Het beïnvloeden van de publieke opinie, vaak met overdreven of onjuiste informatie.", "Het onderhandelen over vrede.", "Het tellen van het aantal slachtoffers."], correct: 1 },
+            // §3.5 Vrede, niet voor iedereen
+            { topic: "h3-3.5", question: "Welke twee belangrijke gebeurtenissen in 1917 veranderden het verloop van de oorlog?", answers: ["De Vrede van Versailles en de oprichting van de Volkenbond.", "De Russische Revolutie en de deelname van de Verenigde Staten.", "De uitvinding van de tank en het gifgas.", "De onbeperkte duikbotenoorlog en de val van het Ottomaanse Rijk."], correct: 1 },
+            { topic: "h3-3.5", question: "Waarom trok Rusland zich in 1917 terug uit de oorlog?", answers: ["Omdat ze hadden gewonnen van Duitsland.", "Omdat er in eigen land een communistische revolutie uitbrak.", "Omdat de Verenigde Staten hen te hulp kwamen.", "Omdat hun soldaten geen wapens meer hadden."], correct: 1 },
+            { topic: "h3-3.5", question: "Wat was een belangrijk gevolg van het Verdrag van Versailles voor Duitsland?", answers: ["Duitsland mocht zijn koloniën houden.", "Duitsland moest grote herstelbetalingen doen en verloor grondgebied.", "Duitsland werd lid van de Volkenbond.", "Het Duitse leger werd het sterkste van Europa."], correct: 1 },
+            // §3.6 Armeense volkenmoord
+            { topic: "h3-3.6", question: "Wat wordt bedoeld met de Armeense genocide?", answers: ["De opstand van de Armeniërs tegen het Ottomaanse Rijk.", "Het verdrag waarbij Armenië onafhankelijk werd.", "De massale en systematische moord op Armeniërs door de Jonge Turken.", "De vlucht van Armeense soldaten naar Rusland."], correct: 2 },
+            { topic: "h3-3.6", question: "In welk rijk vond de Armeense genocide plaats?", answers: ["Het Russische Rijk", "Het Oostenrijk-Hongaarse Rijk", "Het Duitse Keizerrijk", "Het Ottomaanse Rijk"], correct: 3 },
+
+            // ================== Vwo 3 ==================
+            // §3.1 Oriëntatie Oorlogsgruwelen
+            { topic: "vwo-3.1", question: "De schilder Otto Dix wordt geassocieerd met de Eerste Wereldoorlog. Wat was de centrale boodschap van zijn werk?", answers: ["De heldhaftigheid van soldaten.", "De schoonheid van het landschap na een veldslag.", "De gruwelen en de zinloosheid van de oorlog.", "Het belang van nationalisme."], correct: 2 },
+            { topic: "vwo-3.1", question: "Wat wordt bedoeld met de Duitse 'Weltpolitik' van voor 1914?", answers: ["Een politiek van neutraliteit en afzijdigheid.", "Een focus op het creëren van een verenigd Europa.", "Het streven naar een wereldmachtspositie, met name door de bouw van een grote vloot.", "Een beleid gericht op het bevorderen van democratie wereldwijd."], correct: 2 },
+            // §3.2 Europa onder spanning
+            { topic: "vwo-3.2", question: "Wat was een direct gevolg van het modern imperialisme voor de spanningen in Europa aan het begin van de 20e eeuw?", answers: ["Het leidde tot economische samenwerking tussen Europese landen.", "Het zorgde voor een wapenwedloop en conflicten over koloniën.", "Het verminderde de nationalistische gevoelens.", "Het leidde tot de oprichting van de Volkenbond."], correct: 1 },
+            { topic: "vwo-3.2", question: "Wat was de rol van de 'Balkanoorlogen' in de aanloop naar de Eerste Wereldoorlog?", answers: ["Ze losten de spanningen in de regio op.", "Ze versterkten het Ottomaanse Rijk.", "Ze leidden tot een verzwakking van Servië.", "Ze vergrootten de instabiliteit en de rivaliteit tussen de grote mogendheden in de regio."], correct: 3 },
+            // §3.3 Van moordaanlag naar wereldoorlog
+            { topic: "vwo-3.3", question: "Wat was de 'blanco cheque' die Duitsland aan Oostenrijk-Hongarije gaf na de moord in Sarajevo?", answers: ["Een lening om het Oostenrijkse leger te moderniseren.", "De belofte van onvoorwaardelijke steun, wat Oostenrijk-Hongarije ook zou besluiten te doen tegen Servië.", "Een voorstel voor een vredesconferentie.", "Een geheim plan om Servië samen aan te vallen."], correct: 1 },
+            { topic: "vwo-3.3", question: "Waarom mislukte het Schlieffenplan?", answers: ["Omdat het Russische leger sneller mobiliseerde dan verwacht.", "Omdat de Belgische tegenstand sterker was dan verwacht.", "Omdat de Fransen het plan hadden onderschept.", "Alle bovenstaande antwoorden zijn correct."], correct: 3 },
+            // §3.4 Oorlog op alle fronten
+            { topic: "vwo-3.4", question: "Wat wordt bedoeld met een 'totale oorlog' in de context van de Eerste Wereldoorlog?", answers: ["Een oorlog die zich over de hele wereld verspreidde.", "Een oorlog waarbij de gehele samenleving, inclusief de economie en burgers, werd ingezet voor de oorlogsinspanning.", "Een oorlog waarin alle beschikbare wapens, inclusief kernwapens, werden gebruikt.", "Een oorlog die eindigde met de totale overgave van de vijand."], correct: 1 },
+            { topic: "vwo-3.4", question: "Welke rol speelde de kunstenares Käthe Kollwitz in de perceptie van de oorlog?", answers: ["Ze maakte propagandaposters om de oorlog te steunen.", "Ze schilderde heroïsche veldslagen.", "Haar werk toonde het diepe persoonlijke verdriet en verlies veroorzaakt door de oorlog.", "Ze was een officiële oorlogsfotograaf."], correct: 2 },
+            // §3.5 Vrede, maar niet voor iedereen
+            { topic: "vwo-3.5", question: "Wat was het belangrijkste doel van de 'Veertien Punten' van de Amerikaanse president Wilson?", answers: ["Duitsland zo zwaar mogelijk straffen.", "De oprichting van een Volkenbond om toekomstige oorlogen te voorkomen.", "Het verdelen van de Duitse koloniën onder de overwinnaars.", "Het herstellen van de monarchieën in Europa."], correct: 1 },
+            { topic: "vwo-3.5", question: "Wat was de 'Dolkstootlegende'?", answers: ["Het verhaal dat het Duitse leger de oorlog op het slagveld had verloren.", "Het idee dat de Vrede van Versailles eerlijk was.", "Het complotverhaal dat het Duitse leger niet was verslagen, maar verraden door de eigen socialistische regering.", "De mythe dat de keizer de oorlog had gewonnen."], correct: 2 },
+            // §3.6 Duits Zuidwest-Afrika
+            { topic: "vwo-3.6", question: "Wat was de aanleiding voor de genocide op de Herero en Nama in Duits Zuidwest-Afrika?", answers: ["Een religieus conflict tussen de Duitsers en de lokale bevolking.", "Een opstand van de Herero en Nama tegen de Duitse koloniale overheersing.", "De ontdekking van diamanten in het gebied.", "Een grensconflict met de Britse koloniën."], correct: 1 },
+            { topic: "vwo-3.6", question: "Wat was het 'Vernichtungsbefehl' van generaal Von Trotha?", answers: ["Een bevel om alle Herero te verdrijven.", "Een bevel tot de systematische uitroeiing van de Herero.", "Een oproep tot vredesonderhandelingen.", "Een bevel om vee in beslag te nemen."], correct: 1 }
         ];
 
         // --- Game State ---
@@ -369,14 +389,9 @@
         let lastQuestionServed = null; 
 
         // --- Functions ---
-        
+
         function shuffleQuestions(questions) {
              availableQuestions = [...questions].sort(() => Math.random() - 0.5);
-        }
-
-        function startGameApplication() {
-            videoIntroScreen.classList.add('hidden');
-            gameContainer.classList.remove('hidden');
         }
 
         function initializeGame() {
@@ -449,8 +464,15 @@
 
         function showQuestion() {
             if (availableQuestions.length === 0) {
-                shuffleQuestions(gameState.baseQuestions);
+                if (gameState.baseQuestions.length > 0) {
+                    shuffleQuestions(gameState.baseQuestions);
+                } else {
+                    // No questions available for selected topics, should not happen if topics are selected
+                    console.error("No questions available for the selected topics.");
+                    return;
+                }
             }
+            
             if (availableQuestions.length > 1 && availableQuestions[availableQuestions.length - 1] === lastQuestionServed) {
                 const lastIndex = availableQuestions.length - 1;
                 [availableQuestions[lastIndex], availableQuestions[lastIndex - 1]] = [availableQuestions[lastIndex - 1], availableQuestions[lastIndex]];
@@ -585,8 +607,6 @@
         }
 
         // --- Event Listeners ---
-        introVideo.addEventListener('ended', startGameApplication);
-        skipIntroBtn.addEventListener('click', startGameApplication);
         startGameBtn.addEventListener('click', initializeGame);
         playAgainBtn.addEventListener('click', resetGame);
 
