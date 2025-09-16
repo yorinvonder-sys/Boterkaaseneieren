@@ -3,282 +3,540 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digibord: Wie is het?</title>
+    <title>Boter, Kaas en Eieren: Lesstof Editie</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@400;600&display=swap');
-
-        :root {
-            --background-color: #12182B;
-            --primary-color: #00A8E8;
-            --secondary-color: #FF5E5B;
-            --text-color: #FFFFFF;
-            --card-color: #1E293B;
-            --description-color: #A0AEC0;
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* gray-900 */
+            color: #d1d5db; /* gray-300 */
         }
-
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            font-family: 'Open Sans', sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
-            overflow: hidden;
+        .board-cell {
+            transition: all 0.2s ease-in-out;
+            background-color: #1f2937; /* gray-800 */
+            border: 2px solid #374151; /* gray-700 */
+        }
+        .board-cell:hover:not(.occupied) {
+            background-color: #374151; /* gray-700 */
+        }
+        .x-symbol {
+            color: #22d3ee; /* cyan-400 */
+            font-weight: bold;
+            font-size: 4rem;
+            text-shadow: 0 0 10px rgba(34, 211, 238, 0.7);
+        }
+        .o-symbol {
+            color: #f87171; /* red-400 */
+            font-weight: bold;
+            font-size: 4rem;
+            text-shadow: 0 0 10px rgba(248, 113, 113, 0.7);
+        }
+        .modal {
+            display: none;
+        }
+        .modal.active {
             display: flex;
-            justify-content: center;
-            align-items: center;
         }
-
-        .screen {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-            box-sizing: border-box;
-            position: absolute;
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-
-        .hidden {
-            opacity: 0;
-            pointer-events: none;
-            transform: scale(0.95);
-        }
-
-        h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(3rem, 10vw, 6rem);
-            font-weight: 900;
-            color: var(--primary-color);
-            text-shadow: 0 0 15px rgba(0, 168, 232, 0.5);
-            margin: 0;
-        }
-
-        #start-screen p {
-            font-size: clamp(1rem, 3vw, 1.5rem);
-            max-width: 600px;
-            margin: 20px 0 40px;
-            line-height: 1.6;
-        }
-
-        .btn {
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(1rem, 4vw, 1.5rem);
-            font-weight: 700;
-            padding: 15px 40px;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
+        .main-btn {
+            background-color: #22d3ee;
+            color: #111827;
+            font-weight: bold;
+            border-radius: 9999px;
+            padding: 0.75rem 1.5rem;
             transition: all 0.3s ease;
-            text-transform: uppercase;
+            box-shadow: 0 0 15px rgba(34, 211, 238, 0.5);
         }
-
-        #start-btn {
-            background-color: var(--primary-color);
-            color: var(--background-color);
-            box-shadow: 0 5px 20px rgba(0, 168, 232, 0.4);
+        .main-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(34, 211, 238, 0.8);
         }
-        #start-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 168, 232, 0.6);
+        .title-glow {
+            color: #22d3ee;
+            text-shadow: 0 0 15px rgba(34, 211, 238, 0.8);
         }
-        
-        #game-screen {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            height: 100vh;
-            width: 100vw;
-            box-sizing: border-box;
-            padding: 40px 20px;
+        .winning-cell {
+            animation: glow 1s infinite alternate;
+            background-color: #22c55e; /* green-500 */
+            border-color: #86efac; /* green-300 */
         }
-        
-        #game-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 5px #22c55e;
+            }
+            to {
+                box-shadow: 0 0 20px #86efac, 0 0 30px #22c55e;
+            }
         }
-
-        #person-name {
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(3rem, 10vw, 6rem);
-            font-weight: 900;
-            margin: 0;
-            padding: 10px 20px;
-            border-radius: 10px;
-            color: var(--text-color);
-        }
-        
-        #person-description {
-            font-family: 'Open Sans', sans-serif;
-            font-size: clamp(1.1rem, 2.5vw, 1.6rem);
-            max-width: 800px;
-            margin-top: 20px;
-            line-height: 1.6;
-            color: var(--description-color);
-        }
-
-        #timer {
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(1.8rem, 5vw, 3rem);
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-top: 30px;
-        }
-
-        .controls {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            width: 100%;
-        }
-        
-        .control-btn {
-            background-color: var(--card-color);
-            color: var(--text-color);
-            border: 2px solid var(--primary-color);
-        }
-        .control-btn:hover {
-            background-color: var(--primary-color);
-            color: var(--card-color);
-        }
-
-        #stop-btn {
-            border-color: var(--secondary-color);
-        }
-        #stop-btn:hover {
-            background-color: var(--secondary-color);
-            color: var(--card-color);
-        }
-
     </style>
 </head>
-<body>
+<body class="flex items-center justify-center min-h-screen">
 
-    <!-- Startscherm -->
-    <div id="start-screen" class="screen">
-        <h1>Wie is het?</h1>
-        <p>Eén leerling zit met de rug naar het bord. De klas ziet een persoon en een hint. De leerling stelt ja/nee-vragen om te raden wie het is. Druk op START als de leerling er klaar voor zit!</p>
-        <button id="start-btn" class="btn">Start Spel</button>
-    </div>
+    <div id="game-container" class="w-full max-w-4xl mx-auto p-4 md:p-6">
+        
+        <!-- Setup Screen -->
+        <div id="setup-screen" class="bg-[#1f2937] p-8 rounded-lg shadow-2xl text-center">
+            <h1 class="text-6xl font-black mb-4 title-glow">Boter, Kaas en Eieren</h1>
+            <p class="text-gray-400 mb-8">Voer de teamnamen in en kies de onderwerpen om te beginnen.</p>
+            <div class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="team-blue-name" class="block text-left font-semibold text-cyan-400 mb-2">Team Blauw (X)</label>
+                        <input type="text" id="team-blue-name" class="w-full p-3 bg-gray-700 border-2 border-gray-600 rounded-md text-white focus:border-cyan-400 focus:ring-0" value="Blauw">
+                    </div>
+                    <div>
+                        <label for="team-red-name" class="block text-left font-semibold text-red-400 mb-2">Team Rood (O)</label>
+                        <input type="text" id="team-red-name" class="w-full p-3 bg-gray-700 border-2 border-gray-600 rounded-md text-white focus:border-red-400 focus:ring-0" value="Rood">
+                    </div>
+                </div>
+                
+                <div class="my-6">
+                    <h3 class="font-semibold text-xl mb-4">Kies de onderwerpen</h3>
+                    <div id="topic-selection" class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-left">
+                        <label class="flex items-center space-x-3 p-3 bg-gray-800 border-2 border-gray-700 rounded-md cursor-pointer hover:bg-gray-700 transition-colors">
+                            <input type="checkbox" name="topic" value="1.3" class="rounded h-5 w-5 bg-gray-600 border-gray-500 text-cyan-400 focus:ring-cyan-500 focus:ring-offset-gray-800">
+                            <span>§1.3 Nationalisme</span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 bg-gray-800 border-2 border-gray-700 rounded-md cursor-pointer hover:bg-gray-700 transition-colors">
+                            <input type="checkbox" name="topic" value="1.4" class="rounded h-5 w-5 bg-gray-600 border-gray-500 text-cyan-400 focus:ring-cyan-500 focus:ring-offset-gray-800">
+                            <span>§1.4 Dekolonisatie</span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 bg-gray-800 border-2 border-gray-700 rounded-md cursor-pointer hover:bg-gray-700 transition-colors">
+                            <input type="checkbox" name="topic" value="2.1" class="rounded h-5 w-5 bg-gray-600 border-gray-500 text-cyan-400 focus:ring-cyan-500 focus:ring-offset-gray-800">
+                            <span>§2.1 Revolutie</span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 bg-gray-800 border-2 border-gray-700 rounded-md cursor-pointer hover:bg-gray-700 transition-colors">
+                            <input type="checkbox" name="topic" value="2.2" class="rounded h-5 w-5 bg-gray-600 border-gray-500 text-cyan-400 focus:ring-cyan-500 focus:ring-offset-gray-800">
+                            <span>§2.2 Samenleving</span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 bg-gray-800 border-2 border-gray-700 rounded-md cursor-pointer hover:bg-gray-700 transition-colors">
+                            <input type="checkbox" name="topic" value="2.3" class="rounded h-5 w-5 bg-gray-600 border-gray-500 text-cyan-400 focus:ring-cyan-500 focus:ring-offset-gray-800">
+                            <span>§2.3 Industrie</span>
+                        </label>
+                    </div>
+                    <p id="topic-error" class="text-red-400 mt-2 h-4 text-center"></p>
+                </div>
 
-    <!-- Spelscherm -->
-    <div id="game-screen" class="screen hidden">
-        <div id="game-content">
-            <h2 id="person-name"></h2>
-            <p id="person-description"></p>
-            <div id="timer">00:45</div>
+                <button id="start-game-btn" class="main-btn w-full md:w-auto">Start Spel</button>
+            </div>
         </div>
 
-        <div class="controls">
-            <button id="next-btn" class="btn control-btn">Volgende Persoon</button>
-            <button id="stop-btn" class="btn control-btn">Stop Spel</button>
+        <!-- Game Screen -->
+        <div id="game-screen" class="hidden">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
+                <div id="player-blue-display" class="p-3 rounded-lg font-bold text-lg text-white bg-cyan-600 bg-opacity-80 w-full md:w-auto text-center shadow-lg">Speler X: </div>
+                <div id="turn-indicator" class="p-3 rounded-lg font-bold text-lg bg-gray-800 shadow-md w-full md:w-auto text-center order-first md:order-none">... is aan de beurt</div>
+                <div id="player-red-display" class="p-3 rounded-lg font-bold text-lg text-white bg-red-600 bg-opacity-80 w-full md:w-auto text-center shadow-lg">Speler O: </div>
+            </div>
+
+            <div id="game-board" class="grid grid-cols-3 gap-3 aspect-square max-w-xl mx-auto p-3 rounded-lg shadow-2xl">
+                <!-- Cells will be generated by JS -->
+            </div>
+
+             <div id="result-display" class="hidden mt-6 text-center">
+                <h2 id="result-message" class="text-4xl font-bold title-glow"></h2>
+                <button id="play-again-btn" class="mt-6 main-btn">Opnieuw Spelen</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Question Modal -->
+    <div id="question-modal" class="modal fixed inset-0 bg-black bg-opacity-70 backdrop-blur-sm items-center justify-center p-4">
+        <div class="bg-gray-800 rounded-lg shadow-2xl p-8 max-w-2xl w-full border-2 border-gray-700">
+            <h2 class="text-2xl font-bold mb-2 text-cyan-400">Vraag</h2>
+            <p id="question-text" class="text-gray-300 mb-6 text-lg"></p>
+            <div id="answer-options" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Answer buttons will be generated by JS -->
+            </div>
+            <div id="feedback-message" class="mt-6 font-bold text-center text-xl h-6"></div>
         </div>
     </div>
 
     <script>
-        const people = [
-            { name: "Koning Willem II", description: "Ik was koning van 1840 tot 1849 en gaf in 1848 opdracht voor een nieuwe grondwet." },
-            { name: "Koningin Juliana", description: "Ik was koningin van 1948 tot 1980." },
-            { name: "Johan Rudolf Thorbecke", description: "Als liberaal politicus kreeg ik in 1848 van Koning Willem II de opdracht om de grondwet te herzien." },
-            { name: "Pieter Jelles Troelstra", description: "Ik was een socialistische politicus, een van de oprichters van de SDAP, en riep in 1918 op tot een revolutie." },
-            { name: "Koning Willem III", description: "Ik was koning van 1849 tot 1890 en had een conflict met het parlement over Luxemburg." },
-            { name: "Koningin Beatrix", description: "Ik was koningin van 1980 tot 2013." },
-            { name: "Abraham Kuyper", description: "Ik was een protestantse politicus en de oprichter van de ARP. Mijn aanhangers werden 'kleine luyden' genoemd." },
-            { name: "Wilhelmina Drucker", description: "Als feministe richtte ik de VVV op, samen met Aletta Jacobs." },
-            { name: "Koningin Wilhelmina", description: "Ik was koningin van 1890 tot 1948, ook tijdens de Tweede Wereldoorlog, waarin ik vanuit Londen regeerde." },
-            { name: "Koning Willem-Alexander", description: "Ik ben koning sinds 2013." },
-            { name: "Herman Schaepman", description: "Ik was een katholieke politicus die ervoor zorgde dat de katholieken zich beter gingen organiseren in het parlement." },
-            { name: "Aletta Jacobs", description: "Ik was een feministe en de eerste vrouwelijke arts van Nederland. Samen met Wilhelmina Drucker richtte ik de VVVK op." }
+        // --- DOM Elements ---
+        const setupScreen = document.getElementById('setup-screen');
+        const gameScreen = document.getElementById('game-screen');
+        const startGameBtn = document.getElementById('start-game-btn');
+        const teamBlueNameInput = document.getElementById('team-blue-name');
+        const teamRedNameInput = document.getElementById('team-red-name');
+        const topicError = document.getElementById('topic-error');
+        
+        const playerBlueDisplay = document.getElementById('player-blue-display');
+        const playerRedDisplay = document.getElementById('player-red-display');
+        const turnIndicator = document.getElementById('turn-indicator');
+        const gameBoard = document.getElementById('game-board');
+        const resultDisplay = document.getElementById('result-display');
+        const resultMessage = document.getElementById('result-message');
+        const playAgainBtn = document.getElementById('play-again-btn');
+
+        const questionModal = document.getElementById('question-modal');
+        const questionText = document.getElementById('question-text');
+        const answerOptions = document.getElementById('answer-options');
+        const feedbackMessage = document.getElementById('feedback-message');
+
+        // --- Question Bank ---
+        const allQuestions = [
+            // §1.3
+            {
+                topic: "1.3",
+                question: "Wat hield de 'ethische politiek' van Nederland in Nederlands-Indië in?",
+                answers: [
+                    "Een plan om de kolonie zo snel mogelijk zelfstandig te maken.",
+                    "Het idee dat Nederland moest zorgen voor de mensen in de kolonie, bijvoorbeeld door scholen te bouwen.",
+                    "Een plan om zoveel mogelijk winst uit de kolonie te halen.",
+                    "Een plan om iedereen te dwingen Nederlands te spreken."
+                ],
+                correct: 1
+            },
+            {
+                topic: "1.3",
+                question: "Welke politieke partij richtte Soekarno op om te strijden voor een onafhankelijk Indonesië?",
+                answers: [ "Sarekat Islam", "Budi Utomo", "Partai Komunis Indonesia (PKI)", "Partai Nasional Indonesia (PNI)" ],
+                correct: 3
+            },
+            {
+                topic: "1.3",
+                question: "In welk jaar viel Japan Nederlands-Indië binnen tijdens de Tweede Wereldoorlog?",
+                answers: ["1940", "1941", "1942", "1943"],
+                correct: 2
+            },
+            {
+                topic: "1.3",
+                question: "Wat betekent nationalisme in Nederlands-Indië?",
+                answers: [
+                    "Dat de bevolking tevreden was met de Nederlanders.",
+                    "Dat de Indonesische bevolking trots werd op hun eigen land en cultuur en zelf de baas wilde zijn.",
+                    "Dat de bevolking de Japanse bezetting goed vond.",
+                    "Dat de bevolking weer wilde leven zoals vroeger."
+                ],
+                correct: 1
+            },
+            // §1.4
+            {
+                topic: "1.4",
+                question: "Wat gebeurde er op 17 augustus 1945, kort nadat Japan zich had overgegeven?",
+                answers: [ "Soekarno riep de onafhankelijkheid van Indonesië uit.", "Nederland gaf de kolonie vrijwillig terug.", "De 'politionele acties' begonnen.", "De geallieerden namen het bestuur over." ],
+                correct: 0
+            },
+            {
+                topic: "1.4",
+                question: "Waarom voerde Nederland na 1945 'politionele acties' uit in Indonesië?",
+                answers: [ "Om de macht in de kolonie terug te krijgen.", "Om de onafhankelijkheid te steunen.", "Om voedselhulp te brengen.", "Om Nederlanders uit Indonesië te halen." ],
+                correct: 0
+            },
+            // §2.1
+            {
+                topic: "2.1",
+                question: "Rond welk jaar kwamen er in Nederland veel fabrieken bij?",
+                answers: ["Rond 1750", "Rond 1800", "Rond 1860", "Rond 1910"],
+                correct: 2
+            },
+            {
+                topic: "2.1",
+                question: "Hoe was het leven voor een fabrieksarbeider in de 19e eeuw?",
+                answers: [ "Korte werkdagen en veel vrije tijd.", "Een goed loon en een mooi huis.", "Lange werkdagen, gevaarlijk werk en weinig loon.", "Verplichte scholing voor hun kinderen." ],
+                correct: 2
+            },
+            {
+                topic: "2.1",
+                question: "Wat was een belangrijke reden voor de komst van meer fabrieken vanaf 1860?",
+                answers: [ "De uitvinding van de computer.", "Het gebruik van stoommachines en de aanleg van spoorwegen.", "De afschaffing van de koning.", "Een sterke daling van het aantal mensen." ],
+                correct: 1
+            },
+            // §2.2
+            {
+                topic: "2.2",
+                question: "Wat deden arbeiders om hun werk en leven beter te maken?",
+                answers: [ "Hogere boetes accepteren.", "Verhuizen naar een boerderij.", "Vakbonden oprichten om samen te onderhandelen.", "Individueel klagen bij de baas." ],
+                correct: 2
+            },
+            {
+                topic: "2.2",
+                question: "Hoe heet de eerste wet tegen kinderarbeid uit 1874?",
+                answers: [ "De Arbeidswet", "De Leerplichtwet", "Het Kinderwetje van Van Houten", "De Fabriekswet" ],
+                correct: 2
+            },
+            {
+                topic: "2.2",
+                question: "Wanneer kregen alle vrouwen in Nederland het recht om te stemmen?",
+                answers: ["1889", "1917", "1919", "1945"],
+                correct: 2
+            },
+            // §2.3
+            {
+                topic: "2.3",
+                question: "Welk land gaf Nederland geld voor de wederopbouw na de Tweede Wereldoorlog?",
+                answers: [ "De Sovjet-Unie", "De Verenigde Staten", "Duitsland", "België" ],
+                correct: 1
+            },
+            {
+                topic: "2.3",
+                question: "Waarom kwamen er in de jaren '60 en '70 veel 'gastarbeiders' naar Nederland?",
+                answers: [
+                    "Om te helpen op het platteland.",
+                    "Voor de gezelligheid.",
+                    "Omdat er een groot tekort was aan werknemers in de fabrieken.",
+                    "Om de Nederlandse taal te leren."
+                ],
+                correct: 2
+            },
+            {
+                topic: "2.3",
+                question: "Waardoor ontstond er in de jaren '70 een economische crisis?",
+                answers: [
+                    "Door de komst van de eerste computers.",
+                    "Door een plotselinge stijging van de olieprijs.",
+                    "Doordat de vakbonden werden afgeschaft.",
+                    "Doordat de gulden werd ingewisseld voor de euro."
+                ],
+                correct: 1
+            }
         ];
 
-        let availablePeople = [...people];
-        let currentPerson = null;
-        let timerInterval;
-        const GAME_DURATION = 45; // 45 seconden
+        // --- Game State ---
+        let gameState = {};
+        let availableQuestions = [];
+        let selectedCell = null;
+        let lastQuestionServed = null; // Track the last question to avoid repetition
 
-        // Elementen ophalen
-        const startScreen = document.getElementById('start-screen');
-        const gameScreen = document.getElementById('game-screen');
-        const startBtn = document.getElementById('start-btn');
-        const nextBtn = document.getElementById('next-btn');
-        const stopBtn = document.getElementById('stop-btn');
-        const personNameEl = document.getElementById('person-name');
-        const personDescriptionEl = document.getElementById('person-description');
-        const timerEl = document.getElementById('timer');
-
-        // Functies
-        function switchScreen(hide, show) {
-            hide.classList.add('hidden');
-            show.classList.remove('hidden');
+        // --- Functions ---
+        
+        function shuffleQuestions(questions) {
+             availableQuestions = [...questions].sort(() => Math.random() - 0.5);
         }
 
-        function nextPerson() {
-            clearInterval(timerInterval);
+        function initializeGame() {
+            const selectedCheckboxes = document.querySelectorAll('#topic-selection input:checked');
+            const selectedTopics = Array.from(selectedCheckboxes).map(cb => cb.value);
             
-            if (availablePeople.length === 0) {
-                availablePeople = [...people]; // Reset
+            if (selectedTopics.length === 0) {
+                topicError.textContent = "Kies alsjeblieft minstens één onderwerp.";
+                return;
             }
-            
-            const randomIndex = Math.floor(Math.random() * availablePeople.length);
-            currentPerson = availablePeople.splice(randomIndex, 1)[0];
-            
-            personNameEl.textContent = currentPerson.name;
-            personDescriptionEl.textContent = currentPerson.description;
-            
-            startTimer();
-        }
+            topicError.textContent = "";
 
-        function startTimer() {
-            clearInterval(timerInterval);
-            let timeLeft = GAME_DURATION;
-
-            timerEl.style.color = 'var(--primary-color)';
+            const questionsForGame = allQuestions.filter(q => selectedTopics.includes(q.topic));
             
-            const updateTimer = () => {
-                const minutes = Math.floor(timeLeft / 60);
-                let seconds = timeLeft % 60;
-                seconds = seconds < 10 ? '0' + seconds : seconds;
-                timerEl.textContent = `${minutes}:${seconds}`;
-
-                if (timeLeft <= 10) {
-                    timerEl.style.color = 'var(--secondary-color)';
-                }
-                
-                if (timeLeft === 0) {
-                    clearInterval(timerInterval);
-                } else {
-                    timeLeft--;
-                }
+            gameState = {
+                teamBlueName: teamBlueNameInput.value.trim() || 'Blauw',
+                teamRedName: teamRedNameInput.value.trim() || 'Rood',
+                currentPlayer: 'X',
+                board: Array(9).fill(null),
+                gameOver: false,
+                baseQuestions: questionsForGame // Store the initial set for reshuffling
             };
 
-            updateTimer();
-            timerInterval = setInterval(updateTimer, 1000);
+            playerBlueDisplay.textContent = `${gameState.teamBlueName} (X)`;
+            playerRedDisplay.textContent = `${gameState.teamRedName} (O)`;
+            
+            lastQuestionServed = null;
+            shuffleQuestions(gameState.baseQuestions);
+            createBoard();
+            updateTurnIndicator();
+            resultDisplay.classList.add('hidden');
+
+            setupScreen.classList.add('hidden');
+            gameScreen.classList.remove('hidden');
         }
 
-        // Event listeners
-        startBtn.addEventListener('click', () => {
-            switchScreen(startScreen, gameScreen);
-            availablePeople = [...people];
-            nextPerson();
-        });
+        function createBoard() {
+            gameBoard.innerHTML = '';
+            for (let i = 0; i < 9; i++) {
+                const cell = document.createElement('div');
+                cell.classList.add('board-cell', 'flex', 'items-center', 'justify-center', 'cursor-pointer', 'rounded-md');
+                cell.dataset.index = i;
+                cell.addEventListener('click', handleCellClick);
+                gameBoard.appendChild(cell);
+            }
+        }
 
-        nextBtn.addEventListener('click', nextPerson);
+        function updateTurnIndicator() {
+            if(gameState.gameOver) return;
+            const currentTeamName = gameState.currentPlayer === 'X' ? gameState.teamBlueName : gameState.teamRedName;
+            turnIndicator.textContent = `${currentTeamName} is aan de beurt`;
+            if (gameState.currentPlayer === 'X') {
+                turnIndicator.style.borderColor = '#22d3ee';
+                turnIndicator.style.color = '#22d3ee';
+            } else {
+                turnIndicator.style.borderColor = '#f87171';
+                turnIndicator.style.color = '#f87171';
+            }
+        }
 
-        stopBtn.addEventListener('click', () => {
-            clearInterval(timerInterval);
-            switchScreen(gameScreen, startScreen);
-        });
+        function handleCellClick(event) {
+            if (gameState.gameOver) return;
+            
+            const targetCell = event.target.closest('.board-cell');
+            if (!targetCell) return;
+            selectedCell = targetCell;
+
+            const index = selectedCell.dataset.index;
+
+            if (gameState.board[index]) return; 
+
+            showQuestion();
+        }
+
+        function showQuestion() {
+            if (availableQuestions.length === 0) {
+                // If we run out of questions, reshuffle the base set and continue.
+                shuffleQuestions(gameState.baseQuestions);
+            }
+
+            // Ensure we don't serve the same question twice in a row, especially after a reshuffle.
+            if (availableQuestions.length > 1 && availableQuestions[availableQuestions.length - 1] === lastQuestionServed) {
+                // If the next question is the same as the last one, swap it with the one before it.
+                const lastIndex = availableQuestions.length - 1;
+                [availableQuestions[lastIndex], availableQuestions[lastIndex - 1]] = [availableQuestions[lastIndex - 1], availableQuestions[lastIndex]];
+            }
+
+            const questionData = availableQuestions.pop();
+            lastQuestionServed = questionData; // Keep track of this question
+            gameState.currentQuestion = questionData;
+
+            questionText.textContent = questionData.question;
+            answerOptions.innerHTML = '';
+
+            questionData.answers.forEach((answer, index) => {
+                const button = document.createElement('button');
+                button.textContent = answer;
+                button.classList.add('p-4', 'border-2', 'border-gray-600', 'bg-gray-700', 'rounded-md', 'text-left', 'hover:bg-gray-600', 'hover:border-cyan-400', 'transition', 'text-gray-300');
+                button.dataset.index = index;
+                button.addEventListener('click', handleAnswer);
+                answerOptions.appendChild(button);
+            });
+            
+            feedbackMessage.textContent = '';
+            questionModal.classList.add('active');
+        }
+        
+        function handleAnswer(event) {
+            const selectedIndex = parseInt(event.target.dataset.index);
+            const isCorrect = selectedIndex === gameState.currentQuestion.correct;
+            
+            const buttons = answerOptions.querySelectorAll('button');
+            buttons.forEach(button => {
+                button.disabled = true;
+                button.classList.remove('hover:bg-gray-600', 'hover:border-cyan-400');
+            });
+            
+            // Show feedback
+            buttons.forEach((button, index) => {
+                if (index === gameState.currentQuestion.correct) {
+                    button.classList.remove('bg-gray-700', 'border-gray-600');
+                    button.classList.add('bg-green-500', 'border-green-400', 'text-white');
+                } else if (index === selectedIndex && !isCorrect) {
+                     button.classList.remove('bg-gray-700', 'border-gray-600');
+                    button.classList.add('bg-red-500', 'border-red-400', 'text-white');
+                }
+            });
+
+
+            if (isCorrect) {
+                feedbackMessage.textContent = "Correct! Je mag je symbool plaatsen.";
+                feedbackMessage.classList.remove('text-red-400');
+                feedbackMessage.classList.add('text-green-400');
+                
+                setTimeout(() => {
+                    placeSymbol(selectedCell);
+                    questionModal.classList.remove('active');
+                }, 1500);
+
+            } else {
+                feedbackMessage.textContent = "Helaas, de beurt gaat naar de ander.";
+                feedbackMessage.classList.remove('text-green-400');
+                feedbackMessage.classList.add('text-red-400');
+
+                setTimeout(() => {
+                    switchPlayer();
+                    questionModal.classList.remove('active');
+                }, 2000);
+            }
+        }
+
+        function placeSymbol(cell) {
+             const index = cell.dataset.index;
+             gameState.board[index] = gameState.currentPlayer;
+             
+             const symbol = document.createElement('span');
+             symbol.textContent = gameState.currentPlayer;
+             symbol.classList.add(gameState.currentPlayer === 'X' ? 'x-symbol' : 'o-symbol');
+
+             cell.innerHTML = '';
+             cell.appendChild(symbol);
+             cell.classList.add('occupied');
+             cell.removeEventListener('click', handleCellClick);
+             
+             const winningCombination = checkWin();
+             if (winningCombination) {
+                endGame(false, winningCombination);
+             } else if (checkDraw()) {
+                endGame(true, null);
+             } else {
+                switchPlayer();
+             }
+        }
+
+        function switchPlayer() {
+            gameState.currentPlayer = gameState.currentPlayer === 'X' ? 'O' : 'X';
+            updateTurnIndicator();
+        }
+
+        function checkWin() {
+            const winConditions = [
+                [0, 1, 2], [3, 4, 5], [6, 7, 8],
+                [0, 3, 6], [1, 4, 7], [2, 5, 8],
+                [0, 4, 8], [2, 4, 6]
+            ];
+            for (let i = 0; i < winConditions.length; i++) {
+                const combination = winConditions[i];
+                const [a, b, c] = combination;
+                if (gameState.board[a] && gameState.board[a] === gameState.board[b] && gameState.board[a] === gameState.board[c]) {
+                    return combination; // Return the winning combination
+                }
+            }
+            return null; // No winner
+        }
+
+        function checkDraw() {
+            return gameState.board.every(cell => cell !== null);
+        }
+
+        function endGame(draw, winningCombination) {
+            gameState.gameOver = true;
+            if (draw) {
+                resultMessage.textContent = "Gelijkspel!";
+                turnIndicator.textContent = "Spel voorbij";
+            } else {
+                const winnerName = gameState.currentPlayer === 'X' ? gameState.teamBlueName : gameState.teamRedName;
+                resultMessage.textContent = `${winnerName} wint!`;
+                turnIndicator.textContent = "Spel voorbij";
+
+                winningCombination.forEach(index => {
+                    gameBoard.children[index].classList.add('winning-cell');
+                });
+            }
+            resultDisplay.classList.remove('hidden');
+        }
+
+        function resetGame() {
+            gameState.board = Array(9).fill(null);
+            gameState.gameOver = false;
+            gameState.currentPlayer = 'X';
+
+            lastQuestionServed = null;
+            shuffleQuestions(gameState.baseQuestions);
+
+            createBoard();
+            updateTurnIndicator();
+            resultDisplay.classList.add('hidden');
+        }
+
+        // --- Event Listeners ---
+        startGameBtn.addEventListener('click', initializeGame);
+        playAgainBtn.addEventListener('click', resetGame);
+
     </script>
 </body>
 </html>
-
-
 
