@@ -299,87 +299,82 @@
         const allQuestions = [
             // ================== Mavo 3 ==================
             // §1.3 Nationalisme
-            { topic: "3-1.3", question: "Wat hield de 'ethische politiek' van Nederland in Nederlands-Indië in?", answers: ["Een plan om de kolonie zo snel mogelijk zelfstandig te maken.", "Het idee dat Nederland moest zorgen voor de mensen in de kolonie, bijvoorbeeld door scholen te bouwen.", "Een plan om zoveel mogelijk winst uit de kolonie te halen.", "Een plan om iedereen te dwingen Nederlands te spreken."], correct: 1 },
-            { topic: "3-1.3", question: "Wat is nationalisme?", answers: ["Liefde voor je eigen land, volk en cultuur.", "Het idee dat iedereen gelijk is.", "Het veroveren van zoveel mogelijk koloniën.", "Een politiek systeem met een koning aan het hoofd."], correct: 0 },
-            { topic: "3-1.3", question: "Wat was de 'Volksraad' in Nederlands-Indië?", answers: ["Een raad van Nederlanders die de kolonie bestuurde.", "Een soort parlement waarin ook Indonesiërs mochten meepraten, maar met weinig macht.", "De regering van het onafhankelijke Indonesië.", "Een groep die vocht voor onafhankelijkheid."], correct: 1 },
+            { topic: "3-1.3", question: "Wat is de kern van nationalisme?", correctAnswer: "Een sterke voorliefde voor het eigen land, volk en cultuur.", incorrectAnswers: ["Het streven naar wereldwijde gelijkheid.", "Een economisch systeem gebaseerd op vrije handel.", "De wens om de monarchie af te schaffen."] },
+            { topic: "3-1.3", question: "Wat was een belangrijk gevolg van het nationalisme voor de eenwording van Duitsland in de 19e eeuw?", correctAnswer: "Het versterkte het gevoel van een gezamenlijke Duitse identiteit.", incorrectAnswers: ["Het zorgde voor een snelle dekolonisatie.", "Het leidde tot de invoering van het socialisme.", "Het verminderde de macht van het leger."] },
+            { topic: "3-1.3", question: "Wat hield de 'ethische politiek' van Nederland in Nederlands-Indië in?", correctAnswer: "Het idee dat Nederland moest zorgen voor de welvaart en ontwikkeling van de Indonesische bevolking.", incorrectAnswers: ["Een plan om de kolonie zo snel mogelijk zelfstandig te maken.", "Een strategie om de winst uit de kolonie te maximaliseren.", "Een verbod op alle lokale religies en culturele gebruiken."] },
+            { topic: "3-1.3", question: "Wat was de 'Volksraad' in Nederlands-Indië?", correctAnswer: "Een soort parlement met beperkte macht waarin ook Indonesiërs mochten meepraten.", incorrectAnswers: ["De militaire top die de kolonie bestuurde.", "De regering van het onafhankelijke Indonesië.", "Een geheime nationalistische beweging."] },
+            
             // §1.4 Dekolonisatie
-            { topic: "3-1.4", question: "Wat gebeurde er op 17 augustus 1945, kort nadat Japan zich had overgegeven?", answers: [ "Soekarno riep de onafhankelijkheid van Indonesië uit.", "Nederland gaf de kolonie vrijwillig terug.", "De 'politionele acties' begonnen.", "De geallieerden namen het bestuur over." ], correct: 0 },
-            { topic: "3-1.4", question: "Hoe noemde Nederland de oorlogen die het voerde om Indonesië als kolonie te behouden?", answers: ["De Vrijheidsoorlog", "De Indonesische Revolutie", "De Politionele Acties", "De Dekolonisatieoorlog"], correct: 2 },
-            { topic: "3-1.4", question: "Waarom stopte Nederland uiteindelijk met de oorlog in Indonesië?", answers: ["Omdat Nederland de oorlog had gewonnen.", "Omdat de Indonesische bevolking Nederland steunde.", "Omdat andere landen, zoals de VS, druk uitoefenden op Nederland.", "Omdat de koning het zo besliste."], correct: 2 },
+            { topic: "3-1.4", question: "Wie riep op 17 augustus 1945 de onafhankelijkheid van Indonesië uit?", correctAnswer: "Soekarno", incorrectAnswers: ["Koningin Wilhelmina", "Mohammed Hatta", "Generaal Spoor"] },
+            { topic: "3-1.4", question: "Hoe noemde Nederland de militaire operaties in Indonesië tussen 1947 en 1949?", correctAnswer: "Politionele Acties", incorrectAnswers: ["De Vrijheidsoorlog", "De Java-oorlog", "Operatie Product"] },
+            { topic: "3-1.4", question: "Welk land oefende grote druk uit op Nederland om de onafhankelijkheid van Indonesië te erkennen?", correctAnswer: "De Verenigde Staten", incorrectAnswers: ["Groot-Brittannië", "Japan", "Duitsland"] },
+            { topic: "3-1.4", question: "Wat betekent 'soevereiniteitsoverdracht'?", correctAnswer: "De officiële overdracht van de hoogste macht.", incorrectAnswers: ["Het begin van een nieuwe oorlog.", "Het ondertekenen van een handelsverdrag.", "De bouw van een nieuwe hoofdstad."] },
+
             // §2.1 Revolutie
-            { topic: "3-2.1", question: "Hoe was het leven voor een fabrieksarbeider in de 19e eeuw?", answers: [ "Korte werkdagen en veel vrije tijd.", "Een goed loon en een mooi huis.", "Lange werkdagen, gevaarlijk werk en weinig loon.", "Verplichte scholing voor hun kinderen." ], correct: 2 },
-            { topic: "3-2.1", question: "Wat was een belangrijke reden voor de late industrialisatie in Nederland?", answers: ["Er waren te veel boeren.", "Nederland had geen koloniën.", "Er was te weinig steenkool beschikbaar in het begin.", "De koning was tegen fabrieken."], correct: 2 },
+            { topic: "3-2.1", question: "Welke uitvinding was een motor van de Industriële Revolutie?", correctAnswer: "De stoommachine", incorrectAnswers: ["De boekdrukkunst", "Het kompas", "Het internet"] },
+            { topic: "3-2.1", question: "Wat wordt bedoeld met 'urbanisatie'?", correctAnswer: "De trek van mensen van het platteland naar de stad.", incorrectAnswers: ["Het proces van het maken van wetten.", "De uitbreiding van koloniën.", "Het bouwen van dijken."] },
+            { topic: "3-2.1", question: "Hoe waren de leefomstandigheden in de nieuwe arbeiderswijken?", correctAnswer: "Slecht, met kleine huizen en weinig hygiëne.", incorrectAnswers: ["Luxe, met veel ruimte en parken.", "Comfortabel, met gratis elektriciteit.", "Gezond, dankzij de schone stadslucht."] },
+
             // §2.2 Samenleving
-            { topic: "3-2.2", question: "Hoe heet de eerste wet tegen kinderarbeid uit 1874?", answers: [ "De Arbeidswet", "De Leerplichtwet", "Het Kinderwetje van Van Houten", "De Fabriekswet" ], correct: 2 },
-            { topic: "3-2.2", question: "Wat werd er geregeld in de Leerplichtwet van 1901?", answers: ["Dat alle kinderen van 6 tot 12 jaar naar school moesten.", "Dat kinderen niet meer in fabrieken mochten werken.", "Dat vrouwen mochten stemmen.", "Dat de werkdag maximaal 8 uur mocht duren."], correct: 0 },
-            { topic: "3-2.2", question: "Wat is een vakbond?", answers: ["Een politieke partij voor arbeiders.", "Een club voor fabriekseigenaren.", "Een vereniging van werknemers die opkomt voor betere lonen en werkomstandigheden.", "Een school waar je een vak leert."], correct: 2 },
+            { topic: "3-2.2", question: "Wat was het 'Kinderwetje van Van Houten' uit 1874?", correctAnswer: "De eerste wet die kinderarbeid in fabrieken verbood voor kinderen onder de 12.", incorrectAnswers: ["Een wet die alle kinderen verplichtte om speelgoed te krijgen.", "De wet die de leerplicht invoerde.", "Een plan voor grotere scholen."] },
+            { topic: "3-2.2", question: "Wat is een vakbond?", correctAnswer: "Een vereniging van werknemers die opkomt voor hun belangen.", incorrectAnswers: ["Een politieke partij voor de elite.", "Een club voor fabriekseigenaren.", "Een school waar je een ambacht leert."] },
+            { topic: "3-2.2", question: "Wanneer werd de Leerplichtwet in Nederland ingevoerd?", correctAnswer: "In 1901", incorrectAnswers: ["In 1848", "In 1874", "In 1945"] },
+
             // §2.3 Industrie
-            { topic: "3-2.3", question: "Waarom kwamen er in de jaren '60 en '70 veel 'gastarbeiders' naar Nederland?", answers: ["Om te helpen op het platteland.", "Voor de gezelligheid.", "Omdat er een groot tekort was aan werknemers in de fabrieken.", "Om de Nederlandse taal te leren."], correct: 2 },
-             { topic: "3-2.3", question: "Wat was de 'wederopbouw' na de Tweede Wereldoorlog?", answers: ["Het bouwen van nieuwe fabrieken.", "Het herstellen van de schade die in de oorlog was ontstaan.", "Het uitnodigen van gastarbeiders.", "Het oprichten van de Europese Unie."], correct: 1 },
+            { topic: "3-2.3", question: "Waarom kwamen er in de jaren '60 en '70 'gastarbeiders' naar Nederland?", correctAnswer: "Er was een groot tekort aan arbeiders in de Nederlandse industrie.", incorrectAnswers: ["Om het Nederlandse landschap te bekijken.", "Om de Nederlandse taal te studeren.", "Om hier op vakantie te komen."] },
+            { topic: "3-2.3", question: "Wat wordt bedoeld met de 'wederopbouw'?", correctAnswer: "Het herstel van Nederland na de verwoestingen van de Tweede Wereldoorlog.", incorrectAnswers: ["De bouw van compleet nieuwe steden in de polder.", "De periode van de Industriële Revolutie.", "Het afbreken van oude fabrieken."] },
 
             // ================== Mavo 4 ==================
             // §1.1 Koning & Parlement
-            { topic: "4-1.1", question: "Wat was de belangrijkste verandering in de grondwet van 1848?", answers: ["De koning kreeg meer macht.", "De ministers werden verantwoordelijk in plaats van de koning.", "Nederland werd een republiek.", "Iedereen kreeg stemrecht."], correct: 1 },
-            { topic: "4-1.1", question: "Waarom ging koning Willem II akkoord met de nieuwe grondwet van Thorbecke?", answers: ["Omdat hij zelf minder wilde werken.", "Omdat de bevolking in opstand kwam.", "Omdat hij bang was voor een revolutie, net als in andere Europese landen.", "Omdat hij geld kreeg van het parlement."], correct: 2 },
-            { topic: "4-1.1", question: "Wat betekent 'ministeriële verantwoordelijkheid'?", answers: ["Dat de koning verantwoordelijk is voor de ministers.", "Dat de ministers alles zelf mogen beslissen.", "Dat de ministers verantwoordelijk zijn voor hun eigen daden en die van de koning.", "Dat de ministers gekozen worden door het volk."], correct: 2 },
-            // §1.2 Politieke Stromingen
-            { topic: "4-1.2", question: "Welke drie grote politieke stromingen ontstonden in de 19e eeuw?", answers: ["Liberalisme, socialisme en confessionalisme.", "Democratie, dictatuur en monarchie.", "Kapitalisme, communisme en anarchisme.", "Nationalisme, imperialisme en kolonialisme."], correct: 0 },
-            { topic: "4-1.2", question: "Wat was de 'sociale kwestie'?", answers: ["Een discussie over de macht van de koning.", "De slechte woon- en werkomstandigheden van de arbeiders.", "Een ruzie over de koloniën.", "De vraag of vrouwen mochten stemmen."], correct: 1 },
-            { topic: "4-1.2", question: "Wat is 'verzuiling'?", answers: ["De scheiding tussen de Eerste en Tweede Kamer.", "De verdeling van de samenleving in groepen op basis van geloof of politieke overtuiging.", "Het bouwen van dijken om het land te beschermen.", "Het oprichten van politieke partijen."], correct: 1 },
-            // §1.3 Sociale Wetten & Kiesrecht
-            { topic: "4-1.3", question: "Wat was het doel van de eerste feministische golf?", answers: ["Gelijke lonen voor mannen en vrouwen.", "Het recht op abortus.", "Het recht om te mogen studeren.", "Kiesrecht voor vrouwen."], correct: 3 },
-            { topic: "4-1.3", question: "Wanneer kregen álle mannen in Nederland kiesrecht?", answers: ["In 1848", "In 1887", "In 1917", "In 1919"], correct: 2 },
-            { topic: "4-1.3", question: "Wanneer kregen vrouwen in Nederland actief kiesrecht (het recht om te stemmen)?", answers: ["1848", "1917", "1919", "1945"], correct: 2 },
-            // §1.4 Parlement & Democratie
-            { topic: "4-1.4", question: "Waarom moeten politieke partijen in Nederland vaak een coalitie vormen na de verkiezingen?", answers: ["Omdat de koning dat wil.", "Omdat er te veel partijen zijn.", "Omdat meestal geen enkele partij een meerderheid van de zetels heeft.", "Omdat dit in de grondwet staat."], correct: 2 },
-            { topic: "4-1.4", question: "Welk recht heeft alleen de Tweede Kamer, en niet de Eerste Kamer?", answers: ["Het recht van budget (de begroting goedkeuren).", "Het recht van enquête (een onderzoek instellen).", "Het recht van initiatief (zelf een wetsvoorstel indienen).", "Het recht van interpellatie (de minister om informatie vragen)."], correct: 2 },
-            { topic: "4-1.4", question: "Wat is een belangrijk kenmerk van een rechtsstaat?", answers: ["Dat de politie altijd gelijk heeft.", "Dat de overheid en burgers zich beiden aan de wet moeten houden.", "Dat er geen rechters nodig zijn.", "Dat de koning de wetten maakt."], correct: 1 },
-            // Mavo 4 - Personen
-            { topic: "4-personen", question: "Welke politicus was de belangrijkste schrijver van de grondwet van 1848?", answers: ["Abraham Kuyper", "Johan Thorbecke", "Pieter Jelles Troelstra", "Herman Schaepman"], correct: 1 },
-            { topic: "4-personen", question: "Wie was de eerste vrouw in Nederland die naar de universiteit ging en arts werd?", answers: ["Koningin Wilhelmina", "Wilhelmina Drucker", "Koningin Juliana", "Aletta Jacobs"], correct: 3 },
-            { topic: "4-personen", question: "Welke politicus was de leider van de socialisten en richtte de SDAP op?", answers: ["Pieter Jelles Troelstra", "Abraham Kuyper", "Johan Thorbecke", "Koning Willem III"], correct: 0 },
-            { topic: "4-personen", question: "Onder welke koning werd de belangrijke grondwet van 1848 ingevoerd?", answers: ["Koning Willem I", "Koning Willem II", "Koning Willem III", "Koning Willem-Alexander"], correct: 1 },
-            
-            // ================== Havo 3 ==================
-            // §3.1 Oorlogsgruwelen
-            { topic: "h3-3.1", question: "Wat was een belangrijke oorzaak van de Eerste Wereldoorlog?", answers: ["De opkomst van het communisme.", "De groei van nationalisme en onderlinge concurrentie.", "De uitvinding van de stoommachine.", "Een ruzie over koloniën in Afrika."], correct: 1 },
-            { topic: "h3-3.1", question: "Welk land werd gezien als de grootste concurrent van Groot-Brittannië op zee voor de Eerste Wereldoorlog?", answers: ["Frankrijk", "Rusland", "Duitsland", "Verenigde Staten"], correct: 2 },
-            // §3.2 Europa onder spanning
-            { topic: "h3-3.2", question: "Welke landen vormden de Triple Entente (de geallieerden) aan het begin van de oorlog?", answers: ["Duitsland, Oostenrijk-Hongarije en Italië.", "Rusland, Frankrijk en Groot-Brittannië.", "Verenigde Staten, Japan en China.", "Nederland, België en Luxemburg."], correct: 1 },
-            { topic: "h3-3.2", question: "Welke landen stonden bekend als de Centralen aan het begin van de oorlog?", answers: ["Rusland en Frankrijk", "Groot-Brittannië en de VS", "Duitsland en Oostenrijk-Hongarije", "Servië en België"], correct: 2 },
-            // §3.3 Van moord naar oorlog
-            { topic: "h3-3.3", question: "De moord op welke troonopvolger was de directe aanleiding voor de Eerste Wereldoorlog?", answers: ["De Duitse keizer Wilhelm II.", "De Russische tsaar Nicolaas II.", "De Oostenrijk-Hongaarse kroonprins Franz Ferdinand.", "De Britse koning George V."], correct: 2 },
-            { topic: "h3-3.3", question: "Wat was het Schlieffenplan van Duitsland?", answers: ["Een plan om Groot-Brittannië aan te vallen met duikboten.", "Een plan om Rusland snel te verslaan.", "Een plan om via België snel Frankrijk aan te vallen.", "Een plan om een vredesverdrag te sluiten."], correct: 2 },
-            // §3.4 Oorlog op alle fronten
-            { topic: "h3-3.4", question: "Wat was kenmerkend voor de gevechten aan het westfront?", answers: ["Snelle en beweeglijke veldslagen.", "Een loopgravenoorlog met weinig terreinwinst.", "Grote zeeslagen tussen duikboten.", "Luchtaanvallen op steden met bommenwerpers."], correct: 1 },
-            { topic: "h3-3.4", question: "Wat is propaganda in de context van oorlog?", answers: ["Het sturen van geheime boodschappen.", "Het beïnvloeden van de publieke opinie, vaak met overdreven of onjuiste informatie.", "Het onderhandelen over vrede.", "Het tellen van het aantal slachtoffers."], correct: 1 },
-            // §3.5 Vrede, niet voor iedereen
-            { topic: "h3-3.5", question: "Welke twee belangrijke gebeurtenissen in 1917 veranderden het verloop van de oorlog?", answers: ["De Vrede van Versailles en de oprichting van de Volkenbond.", "De Russische Revolutie en de deelname van de Verenigde Staten.", "De uitvinding van de tank en het gifgas.", "De onbeperkte duikbotenoorlog en de val van het Ottomaanse Rijk."], correct: 1 },
-            { topic: "h3-3.5", question: "Waarom trok Rusland zich in 1917 terug uit de oorlog?", answers: ["Omdat ze hadden gewonnen van Duitsland.", "Omdat er in eigen land een communistische revolutie uitbrak.", "Omdat de Verenigde Staten hen te hulp kwamen.", "Omdat hun soldaten geen wapens meer hadden."], correct: 1 },
-            { topic: "h3-3.5", question: "Wat was een belangrijk gevolg van het Verdrag van Versailles voor Duitsland?", answers: ["Duitsland mocht zijn koloniën houden.", "Duitsland moest grote herstelbetalingen doen en verloor grondgebied.", "Duitsland werd lid van de Volkenbond.", "Het Duitse leger werd het sterkste van Europa."], correct: 1 },
-            // §3.6 Armeense volkenmoord
-            { topic: "h3-3.6", question: "Wat wordt bedoeld met de Armeense genocide?", answers: ["De opstand van de Armeniërs tegen het Ottomaanse Rijk.", "Het verdrag waarbij Armenië onafhankelijk werd.", "De massale en systematische moord op Armeniërs door de Jonge Turken.", "De vlucht van Armeense soldaten naar Rusland."], correct: 2 },
-            { topic: "h3-3.6", question: "In welk rijk vond de Armeense genocide plaats?", answers: ["Het Russische Rijk", "Het Oostenrijk-Hongaarse Rijk", "Het Duitse Keizerrijk", "Het Ottomaanse Rijk"], correct: 3 },
+            { topic: "4-1.1", question: "Wat was de belangrijkste verandering in de grondwet van 1848?", correctAnswer: "De ministers werden verantwoordelijk en de macht van de koning werd beperkt.", incorrectAnswers: ["De koning kreeg absolute macht.", "Nederland werd een republiek.", "Alle mannen en vrouwen kregen kiesrecht."] },
+            { topic: "4-1.1", question: "Waarom ging koning Willem II akkoord met de grondwetswijziging?", correctAnswer: "Hij was bang voor een revolutie, net als in andere Europese landen.", incorrectAnswers: ["Hij wilde zelf minder verantwoordelijkheid.", "Het parlement had hem omgekocht.", "Hij geloofde sterk in democratie."] },
+            { topic: "4-1.1", question: "Wie was de belangrijkste opsteller van de grondwet van 1848?", correctAnswer: "Johan Rudolph Thorbecke", incorrectAnswers: ["Koning Willem II", "Karl Marx", "Aletta Jacobs"] },
 
-            // ================== Vwo 3 ==================
-            // §3.1 Oriëntatie Oorlogsgruwelen
-            { topic: "vwo-3.1", question: "De schilder Otto Dix wordt geassocieerd met de Eerste Wereldoorlog. Wat was de centrale boodschap van zijn werk?", answers: ["De heldhaftigheid van soldaten.", "De schoonheid van het landschap na een veldslag.", "De gruwelen en de zinloosheid van de oorlog.", "Het belang van nationalisme."], correct: 2 },
-            { topic: "vwo-3.1", question: "Wat wordt bedoeld met de Duitse 'Weltpolitik' van voor 1914?", answers: ["Een politiek van neutraliteit en afzijdigheid.", "Een focus op het creëren van een verenigd Europa.", "Het streven naar een wereldmachtspositie, met name door de bouw van een grote vloot.", "Een beleid gericht op het bevorderen van democratie wereldwijd."], correct: 2 },
-            // §3.2 Europa onder spanning
-            { topic: "vwo-3.2", question: "Wat was een direct gevolg van het modern imperialisme voor de spanningen in Europa aan het begin van de 20e eeuw?", answers: ["Het leidde tot economische samenwerking tussen Europese landen.", "Het zorgde voor een wapenwedloop en conflicten over koloniën.", "Het verminderde de nationalistische gevoelens.", "Het leidde tot de oprichting van de Volkenbond."], correct: 1 },
-            { topic: "vwo-3.2", question: "Wat was de rol van de 'Balkanoorlogen' in de aanloop naar de Eerste Wereldoorlog?", answers: ["Ze losten de spanningen in de regio op.", "Ze versterkten het Ottomaanse Rijk.", "Ze leidden tot een verzwakking van Servië.", "Ze vergrootten de instabiliteit en de rivaliteit tussen de grote mogendheden in de regio."], correct: 3 },
-            // §3.3 Van moordaanlag naar wereldoorlog
-            { topic: "vwo-3.3", question: "Wat was de 'blanco cheque' die Duitsland aan Oostenrijk-Hongarije gaf na de moord in Sarajevo?", answers: ["Een lening om het Oostenrijkse leger te moderniseren.", "De belofte van onvoorwaardelijke steun, wat Oostenrijk-Hongarije ook zou besluiten te doen tegen Servië.", "Een voorstel voor een vredesconferentie.", "Een geheim plan om Servië samen aan te vallen."], correct: 1 },
-            { topic: "vwo-3.3", question: "Waarom mislukte het Schlieffenplan?", answers: ["Omdat het Russische leger sneller mobiliseerde dan verwacht.", "Omdat de Belgische tegenstand sterker was dan verwacht.", "Omdat de Fransen het plan hadden onderschept.", "Alle bovenstaande antwoorden zijn correct."], correct: 3 },
+            // §1.2 Politieke Stromingen
+            { topic: "4-1.2", question: "Welke stroming legde de nadruk op de vrijheid van het individu en de overheid op afstand?", correctAnswer: "Liberalisme", incorrectAnswers: ["Socialisme", "Confessionalisme", "Feminisme"] },
+            { topic: "4-1.2", question: "Wat was de 'sociale kwestie'?", correctAnswer: "Het probleem van de slechte leef- en werkomstandigheden van arbeiders.", incorrectAnswers: ["Een discussie over de onafhankelijkheid van de koloniën.", "De vraag wie de koning mocht opvolgen.", "Een ruzie tussen katholieken en protestanten."] },
+            { topic: "4-1.2", question: "Wat is 'verzuiling'?", correctAnswer: "De verdeling van de samenleving in groepen op basis van levensbeschouwing.", incorrectAnswers: ["Het proces waarbij wetten worden gemaakt.", "De scheiding tussen de Eerste en Tweede Kamer.", "De strijd voor vrouwenkiesrecht."] },
+
+            // §1.3 Sociale Wetten & Kiesrecht
+            { topic: "4-1.3", question: "Waar streed de eerste feministische golf voornamelijk voor?", correctAnswer: "Kiesrecht voor vrouwen.", incorrectAnswers: ["Gelijk loon voor gelijk werk.", "Het recht op abortus.", "Meer kinderopvangplaatsen."] },
+            { topic: "4-1.3", question: "In welk jaar werd het algemeen kiesrecht voor mannen ingevoerd in Nederland?", correctAnswer: "1917", incorrectAnswers: ["1848", "1901", "1945"] },
+            { topic: "4-1.3", question: "Wanneer kregen vrouwen in Nederland ook actief kiesrecht (het recht om te stemmen)?", correctAnswer: "1919", incorrectAnswers: ["1888", "1917", "1922"] },
+
+            // §1.4 Parlement & Democratie
+            { topic: "4-1.4", question: "Waarom moeten politieke partijen in Nederland vaak een coalitie vormen?", correctAnswer: "Omdat meestal geen enkele partij in zijn eentje de meerderheid in het parlement haalt.", incorrectAnswers: ["Omdat de koning bepaalt welke partijen moeten samenwerken.", "Dit is een ongeschreven regel uit de 19e eeuw.", "Om te voorkomen dat er te veel wetten worden aangenomen."] },
+            { topic: "4-1.4", question: "Welk recht heeft de Tweede Kamer wél, en de Eerste Kamer níet?", correctAnswer: "Het recht van initiatief (zelf wetsvoorstellen indienen).", incorrectAnswers: ["Het recht om een wet goed of af te keuren.", "Het recht om de minister-president te kiezen.", "Het recht om de begroting te bespreken."] },
+            
+            // Mavo 4 - Personen
+            { topic: "4-personen", question: "Wie was Aletta Jacobs?", correctAnswer: "De eerste vrouwelijke arts in Nederland en een voorvechtster van vrouwenrechten.", incorrectAnswers: ["De vrouw van koning Willem III.", "Een beroemde schrijfster van kinderboeken.", "De eerste vrouwelijke minister-president."] },
+            { topic: "4-personen", question: "Wie was Pieter Jelles Troelstra?", correctAnswer: "De leider van de socialisten die streed voor algemeen kiesrecht.", incorrectAnswers: ["Een liberale politicus en maker van de grondwet.", "De oprichter van de eerste katholieke partij.", "Een generaal in het Nederlandse leger."] },
+            { topic: "4-personen", question: "Welke politicus was de oprichter van de eerste politieke partij (de ARP) en streed voor 'bijzonder' onderwijs?", correctAnswer: "Abraham Kuyper", incorrectAnswers: ["Johan Thorbecke", "Herman Schaepman", "Ferdinand Domela Nieuwenhuis"] },
+
+            // ================== Havo 3 / Vwo 3 (grotendeels overlappend) ==================
+            // §3.1 & 3.2 Oorzaken en Spanningen
+            { topic: "h3-3.1", question: "Welke van deze was GEEN dieperliggende oorzaak van de Eerste Wereldoorlog?", correctAnswer: "De opkomst van het communisme in Rusland.", incorrectAnswers: ["Groeiend nationalisme in Europese landen.", "De wapenwedloop tussen grootmachten.", "De strijd om koloniën (modern imperialisme)."] },
+            { topic: "h3-3.2", question: "Welke landen vormden de Triple Entente (Geallieerden) bij het uitbreken van de oorlog?", correctAnswer: "Frankrijk, Groot-Brittannië en Rusland.", incorrectAnswers: ["Duitsland, Oostenrijk-Hongarije en het Ottomaanse Rijk.", "Nederland, België en Luxemburg.", "Spanje, Portugal en Italië."] },
+            { topic: "h3-3.2", question: "Welke landen stonden bekend als de Centralen?", correctAnswer: "Duitsland en Oostenrijk-Hongarije.", incorrectAnswers: ["Servië en Rusland.", "Groot-Brittannië en de VS.", "Frankrijk en België."] },
+             { topic: "vwo-3.2", question: "Wat was een direct gevolg van de 'Weltpolitik' van de Duitse keizer Wilhelm II?", correctAnswer: "Een vlootwedloop met Groot-Brittannië.", incorrectAnswers: ["Een militaire alliantie met Frankrijk.", "Het afstaan van alle Duitse koloniën.", "Een periode van vrede in Europa."] },
+
+
+            // §3.3 Van moord naar oorlog
+            { topic: "h3-3.3", question: "Welke gebeurtenis was de directe aanleiding voor het uitbreken van de Eerste Wereldoorlog?", correctAnswer: "De moord op de Oostenrijk-Hongaarse troonopvolger Franz Ferdinand.", incorrectAnswers: ["De Duitse invasie van Polen.", "De Russische Revolutie.", "De aanval op Pearl Harbor."] },
+            { topic: "h3-3.3", question: "Wat hield het Duitse Schlieffenplan in?", correctAnswer: "Een snelle aanval op Frankrijk via België om een tweefrontenoorlog te voorkomen.", incorrectAnswers: ["Een plan voor een onbeperkte duikbotenoorlog tegen Groot-Brittannië.", "Een voorstel voor een vredesconferentie in Den Haag.", "Een strategie om Rusland in de winter aan te vallen."] },
+            { topic: "vwo-3.3", question: "Wat was de 'blanco cheque' die Duitsland aan Oostenrijk-Hongarije gaf?", correctAnswer: "De belofte van onvoorwaardelijke steun, ongeacht de gevolgen.", incorrectAnswers: ["Een grote som geld om het leger te financieren.", "Een geheim document met het aanvalsplan voor Servië.", "Een voorstel om de kwestie diplomatiek op te lossen."] },
+
             // §3.4 Oorlog op alle fronten
-            { topic: "vwo-3.4", question: "Wat wordt bedoeld met een 'totale oorlog' in de context van de Eerste Wereldoorlog?", answers: ["Een oorlog die zich over de hele wereld verspreidde.", "Een oorlog waarbij de gehele samenleving, inclusief de economie en burgers, werd ingezet voor de oorlogsinspanning.", "Een oorlog waarin alle beschikbare wapens, inclusief kernwapens, werden gebruikt.", "Een oorlog die eindigde met de totale overgave van de vijand."], correct: 1 },
-            { topic: "vwo-3.4", question: "Welke rol speelde de kunstenares Käthe Kollwitz in de perceptie van de oorlog?", answers: ["Ze maakte propagandaposters om de oorlog te steunen.", "Ze schilderde heroïsche veldslagen.", "Haar werk toonde het diepe persoonlijke verdriet en verlies veroorzaakt door de oorlog.", "Ze was een officiële oorlogsfotograaf."], correct: 2 },
-            // §3.5 Vrede, maar niet voor iedereen
-            { topic: "vwo-3.5", question: "Wat was het belangrijkste doel van de 'Veertien Punten' van de Amerikaanse president Wilson?", answers: ["Duitsland zo zwaar mogelijk straffen.", "De oprichting van een Volkenbond om toekomstige oorlogen te voorkomen.", "Het verdelen van de Duitse koloniën onder de overwinnaars.", "Het herstellen van de monarchieën in Europa."], correct: 1 },
-            { topic: "vwo-3.5", question: "Wat was de 'Dolkstootlegende'?", answers: ["Het verhaal dat het Duitse leger de oorlog op het slagveld had verloren.", "Het idee dat de Vrede van Versailles eerlijk was.", "Het complotverhaal dat het Duitse leger niet was verslagen, maar verraden door de eigen socialistische regering.", "De mythe dat de keizer de oorlog had gewonnen."], correct: 2 },
-            // §3.6 Duits Zuidwest-Afrika
-            { topic: "vwo-3.6", question: "Wat was de aanleiding voor de genocide op de Herero en Nama in Duits Zuidwest-Afrika?", answers: ["Een religieus conflict tussen de Duitsers en de lokale bevolking.", "Een opstand van de Herero en Nama tegen de Duitse koloniale overheersing.", "De ontdekking van diamanten in het gebied.", "Een grensconflict met de Britse koloniën."], correct: 1 },
-            { topic: "vwo-3.6", question: "Wat was het 'Vernichtungsbefehl' van generaal Von Trotha?", answers: ["Een bevel om alle Herero te verdrijven.", "Een bevel tot de systematische uitroeiing van de Herero.", "Een oproep tot vredesonderhandelingen.", "Een bevel om vee in beslag te nemen."], correct: 1 }
+            { topic: "h3-3.4", question: "Wat was kenmerkend voor de gevechten aan het westfront?", correctAnswer: "Een statische loopgravenoorlog met enorme verliezen.", incorrectAnswers: ["Snelle en beweeglijke tankgevechten.", "Grote zeeslagen in de Noordzee.", "Voornamelijk luchtgevechten tussen piloten."] },
+            { topic: "h3-3.4", question: "Wat is propaganda in de context van oorlogsvoering?", correctAnswer: "Het beïnvloeden van de publieke opinie, vaak via eenzijdige of onware berichtgeving.", incorrectAnswers: ["Het gebruik van geheime codes om te communiceren.", "De ontwikkeling van nieuwe wapens.", "Het verlenen van medische hulp aan gewonden."] },
+            { topic: "vwo-3.4", question: "Wat wordt bedoeld met een 'totale oorlog'?", correctAnswer: "Een oorlog waarbij de hele maatschappij wordt ingezet voor de oorlogsinspanning.", incorrectAnswers: ["Een oorlog die op alle continenten wordt uitgevochten.", "Een oorlog die eindigt in een totale vernietiging.", "Een oorlog die uitsluitend door beroepssoldaten wordt gevoerd."] },
+
+            // §3.5 Vrede, niet voor iedereen
+            { topic: "h3-3.5", question: "Welke twee gebeurtenissen in 1917 waren een keerpunt in de oorlog?", correctAnswer: "De deelname van de VS en de Russische Revolutie.", incorrectAnswers: ["De uitvinding van de tank en het gifgas.", "De Slag om de Somme en de Slag bij Verdun.", "De val van het Ottomaanse Rijk en de Italiaanse overgave."] },
+            { topic: "h3-3.5", question: "Wat was een belangrijk punt uit het Verdrag van Versailles voor Duitsland?", correctAnswer: "Duitsland kreeg de alleinige schuld van de oorlog en moest herstelbetalingen doen.", incorrectAnswers: ["Duitsland mocht een groot leger houden ter verdediging.", "Duitsland werd lid van de nieuw opgerichte Volkenbond.", "Het Duitse keizerrijk werd hersteld."] },
+            { topic: "vwo-3.5", question: "Wat was de 'Dolkstootlegende'?", correctAnswer: "Het onjuiste verhaal dat het Duitse leger niet verslagen was, maar verraden door de eigen politici.", incorrectAnswers: ["De mythe over een geheime dolk met magische krachten.", "Een waar gebeurd verhaal over een soldaat die een generaal neerstak.", "De bijnaam voor het Verdrag van Versailles."] },
+            
+            // §3.6 Genocides
+            { topic: "h3-3.6", question: "De genocide op de Armeniërs vond plaats in welk rijk?", correctAnswer: "Het Ottomaanse Rijk", incorrectAnswers: ["Het Russische Rijk", "Het Duitse Keizerrijk", "Oostenrijk-Hongarije"] },
+            { topic: "vwo-3.6", question: "Wat was de aanleiding voor de genocide op de Herero en Nama in Duits Zuidwest-Afrika?", correctAnswer: "Een opstand van de Herero en Nama tegen de Duitse koloniale overheersing.", incorrectAnswers: ["Een religieus conflict tussen de stammen.", "De ontdekking van goud en diamanten.", "Een bevel van de Britse regering."] }
         ];
 
         // --- Game State ---
@@ -389,6 +384,13 @@
         let lastQuestionServed = null; 
 
         // --- Functions ---
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
 
         function shuffleQuestions(questions) {
              availableQuestions = [...questions].sort(() => Math.random() - 0.5);
@@ -467,7 +469,6 @@
                 if (gameState.baseQuestions.length > 0) {
                     shuffleQuestions(gameState.baseQuestions);
                 } else {
-                    // No questions available for selected topics, should not happen if topics are selected
                     console.error("No questions available for the selected topics.");
                     return;
                 }
@@ -479,12 +480,20 @@
             }
             const questionData = availableQuestions.pop();
             lastQuestionServed = questionData; 
-            gameState.currentQuestion = questionData;
+            
+            const answers = [questionData.correctAnswer, ...questionData.incorrectAnswers];
+            shuffleArray(answers);
+            const correctIndex = answers.indexOf(questionData.correctAnswer);
+
+            gameState.currentQuestion = {
+                question: questionData.question,
+                correct: correctIndex 
+            };
 
             questionText.textContent = questionData.question;
             answerOptions.innerHTML = '';
 
-            questionData.answers.forEach((answer, index) => {
+            answers.forEach((answer, index) => {
                 const button = document.createElement('button');
                 button.textContent = answer;
                 button.classList.add('p-4', 'border-2', 'border-gray-600', 'bg-gray-700', 'rounded-md', 'text-left', 'hover:bg-gray-600', 'hover:border-cyan-400', 'transition', 'text-gray-300');
